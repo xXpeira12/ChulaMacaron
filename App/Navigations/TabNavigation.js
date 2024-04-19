@@ -11,9 +11,13 @@ import ReportScreen from '../Screens/ReportScreen';
 export default function TabNavigation() {
     const Tab = createBottomTabNavigator();
   return (
-    <Tab.Navigator screenOptions={{
+    <Tab.Navigator 
+    screenOptions={{
       headerShown: false,
-    }}>
+      tabBarStyle: { height: 100},
+  
+    }}
+    >
         <Tab.Screen name="Home" component={Home}
           options={{
             tabBarLabel: ({ focused }) => (
