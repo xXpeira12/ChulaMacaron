@@ -1,6 +1,8 @@
-import { View, Text } from 'react-native'
+import { View, Text , Dimensions } from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import Header from '../Components/Home/header';
+
+const { height } = Dimensions.get('window')
 
 export default function Home({ navigation }) {
   useLayoutEffect(() => {
@@ -8,7 +10,7 @@ export default function Home({ navigation }) {
   }, [navigation]);
 
   return (
-    <View>
+    <View style={{backgroundColor:'#D5D5D5', height: height*0.5, justifyContent: 'center', alignItems: 'center'}}>
       <Header />
     </View>
   )
