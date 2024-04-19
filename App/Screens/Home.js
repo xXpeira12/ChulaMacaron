@@ -1,5 +1,6 @@
 import { View, Text } from 'react-native'
 import React, { useLayoutEffect } from 'react'
+import Header from '../Components/Home/header';
 
 export default function Home({ navigation }) {
   useLayoutEffect(() => {
@@ -8,7 +9,7 @@ export default function Home({ navigation }) {
 
   return (
     <View>
-      <Text>Home</Text>
+      <Header />
     </View>
   )
 }
