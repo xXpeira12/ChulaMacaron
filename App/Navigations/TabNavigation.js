@@ -16,24 +16,30 @@ export default function TabNavigation() {
     }}>
         <Tab.Screen name="Home" component={Home}
           options={{
-            tabBarLabel: 'Home',
+            tabBarLabel: ({ focused }) => (
+              <Text style={{ color: focused ? '#E26199' : 'gray' }}>Home</Text>
+            ),
             tabBarIcon: ({ color, size }) => (
-              <Ionicons name="home" color={color} size={size}/>
+              <Ionicons name="home" color='#E26199' size={size}/>
             ),
           }}
          />
         <Tab.Screen name="Report" component={ReportScreen} 
         options={{
-          tabBarLabel: 'Report',
+          tabBarLabel: ({ focused }) => (
+            <Text style={{ color: focused ? '#E26199' : 'gray' }}>Home</Text>
+          ),
           tabBarIcon: ({ color, size }) => (
-            <Octicons name="report" color={color} size={size}/>
+            <Octicons name="report" color='#E26199' size={size}/>
           ),
         }}/>
         <Tab.Screen name="Dashboard" component={Dashboard}
         options={{
-          tabBarLabel: 'Dashboard',
+          tabBarLabel: ({ focused }) => (
+            <Text style={{ color: focused ? '#E26199' : 'gray' }}>Home</Text>
+          ),
           tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="space-dashboard" color={color} size={size}/>
+            <MaterialIcons name="space-dashboard" color='#E26199' size={size}/>
           ),
         }} />
 
