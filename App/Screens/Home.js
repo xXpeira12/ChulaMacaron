@@ -88,36 +88,6 @@ export default function Home({ navigation }) {
     </View>
 
 </View>
-
-    <View style={{paddingTop:40}}>
-      <Text style={{fontFamily: '', fontSize:25, color:'#E26199'}}>ปัญหาที่รับแจ้ง: </Text>
-      <View style={{paddingTop:8, flexDirection:'row'}}>
-        <View style={{width: '50%'}}>
-      <Text style={{fontFamily: '', fontSize:20, color:'#E26199',paddingTop:10}}>ถนน</Text>
-      <Text style={{fontFamily: '', fontSize:20, color:'#E26199',paddingTop:10}}>ความสะอาด</Text>
-      <Text style={{fontFamily: '', fontSize:20, color:'#E26199',paddingTop:10}}>การจราจร</Text>
-      <Text style={{fontFamily: '', fontSize:20, color:'#E26199',paddingTop:10}}>ไฟฟ้า</Text>
-      <Text style={{fontFamily: '', fontSize:20, color:'#E26199',paddingTop:10}}>น้ำท่วม</Text>
-      <Text style={{fontFamily: '', fontSize:20, color:'#E26199',paddingTop:10}}>ต้นไม้</Text>
-      <Text style={{fontFamily: '', fontSize:20, color:'#E26199',paddingTop:10}}>ทางเท้า</Text>
-      <Text style={{fontFamily: '', fontSize:20, color:'#E26199',paddingTop:10}}>เสียงรบกวน</Text>
-      </View>
-      <View style={{width: '50%'}}>
-      <Text style={{fontFamily: '', fontSize:20, color:'#E26199',paddingTop:10}}>อุปกรณ์เสียหาย</Text>
-      <Text style={{fontFamily: '', fontSize:20, color:'#E26199',paddingTop:10}}>อาคารชำรุด</Text>
-      <Text style={{fontFamily: '', fontSize:20, color:'#E26199',paddingTop:10}}>สายสื่อสาร</Text>
-      <Text style={{fontFamily: '', fontSize:20, color:'#E26199',paddingTop:10}}>ฝาท่อระบายน้ำ</Text>
-      <Text style={{fontFamily: '', fontSize:20, color:'#E26199',paddingTop:10}}>กลิ่นควัน</Text>
-      <Text style={{fontFamily: '', fontSize:20, color:'#E26199',paddingTop:10}}>สัตว์</Text>
-      <Text style={{fontFamily: '', fontSize:20, color:'#E26199',paddingTop:10}}>น้ำประปา</Text>
-      <Text style={{fontFamily: '', fontSize:20, color:'#E26199',paddingTop:10}}>อื่นๆ</Text>
-      </View>
-      
-      </View>
-  
-
-    </View>
-      
     </View>
 
 
