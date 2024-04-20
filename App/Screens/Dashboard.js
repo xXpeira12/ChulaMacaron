@@ -141,7 +141,7 @@ export default function Dashboard({ navigation }) {
 
               </View>
 
-              <TouchableOpacity onPress={() => navigation.navigate('Detail')}  style={{backgroundColor:'#E26199', width:'100%', height:40,  borderRadius:9 , paddingRight:'5%', alignItems:'center', justifyContent:'center'}}>
+              <TouchableOpacity onPress={() => navigation.navigate('Detail', {item: item})}  style={{backgroundColor:'#E26199', width:'100%', height:40,  borderRadius:9 , paddingRight:'5%', alignItems:'center', justifyContent:'center'}}>
                 <Text style={{textAlign:'center',fontWeight:'bold' , color:'white'}}>See Detail</Text>
               </TouchableOpacity>
 
