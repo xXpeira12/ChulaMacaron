@@ -147,7 +147,7 @@ export default function Dashboard({ navigation }) {
   const [selectFaculty, setSelectFaculty] = useState(null);
   const [selectCurrentStatus, setCurrentStatus] = useState(null);
   const filteredElements = mockData.filter(element => 
-    (!selectFaculty || element.faculty === selectFaculty) && 
+    (!selectFaculty || element.Faculty === selectFaculty) && 
     (!selectCurrentStatus || element.status === selectCurrentStatus)
   );
 
