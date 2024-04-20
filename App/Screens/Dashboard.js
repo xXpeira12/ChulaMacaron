@@ -198,8 +198,9 @@ export default function Dashboard({ navigation }) {
               <View style={{flexDirection:'row'}}>
 
                 <View style = {{width:'80%'}}>
-                <Text style={{fontWeight: 'bold', fontSize: 20}}>{item.prob}</Text>
-                <Text style={{fontSize: 20 , fontWeight:'bold'}}>{item.detail}</Text>
+                <Text style={{fontWeight: 'bold', fontSize: 20, color:'#E26199'}}>{item.rootProblem}</Text>
+                <Text style={{fontSize: 16 , fontWeight:'bold', color:'#E26199'}}>{item.detailProblem}</Text>
+                <Text style={{fontSize: 12 , fontWeight:'bold', color:'#E26199', paddingTop:10}}>{item.Faculty}</Text>
                 </View>
 
                 <View>
