@@ -28,10 +28,6 @@ function NavigationButtons() {
       <Icon name="home-outline" size={30} color={focusedButton === 'Home' ? '#E26199' : '#000'} />
       <Text style={{ fontWeight: 'bold', color: focusedButton === 'Home' ? '#E26199' : '#000' }}>Home</Text>
     </TouchableOpacity>
-    <TouchableOpacity onPress={() => handlePress('ProblemScreen')} activeOpacity={0.7}>
-      <Icon name="alert-circle-outline" size={30} color={focusedButton === 'ProblemScreen' ? '#E26199' : '#000'} />
-      <Text style={{ fontWeight: 'bold', color: focusedButton === 'ProblemScreen' ? '#E26199' : '#000' }}>Problem</Text>
-    </TouchableOpacity>
     <TouchableOpacity onPress={() => handlePress('ReportScreen')} activeOpacity={0.7}>
       <Icon name="document-text-outline" size={30} color={focusedButton === 'ReportScreen' ? '#E26199' : '#000'} />
       <Text style={{ fontWeight: 'bold', color: focusedButton === 'ReportScreen' ? '#E26199' : '#000' }}>Report</Text>
@@ -39,6 +35,10 @@ function NavigationButtons() {
     <TouchableOpacity onPress={() => handlePress('Dashboard')} activeOpacity={0.7}>
       <Icon name="analytics-outline" size={30} color={focusedButton === 'Dashboard' ? '#E26199' : '#000'} />
       <Text style={{ fontWeight: 'bold', color: focusedButton === 'Dashboard' ? '#E26199' : '#000' }}>Dashboard</Text>
+    </TouchableOpacity>
+    <TouchableOpacity onPress={() => handlePress('ProblemScreen')} activeOpacity={0.7}>
+      <Icon name="alert-circle-outline" size={30} color={focusedButton === 'ProblemScreen' ? '#E26199' : '#000'} />
+      <Text style={{ fontWeight: 'bold', color: focusedButton === 'ProblemScreen' ? '#E26199' : '#000' }}>Problem</Text>
     </TouchableOpacity>
   </View>
   );
