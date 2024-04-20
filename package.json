@@ -36,7 +36,8 @@
     "react-native-tailwindcss": "^1.1.11",
     "react-native-web": "~0.19.6",
     "react-navigation": "^5.0.0",
-    "tailwind-rn": "^4.2.0"
+    "tailwind-rn": "^4.2.0",
+    "expo-image-picker": "~14.7.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

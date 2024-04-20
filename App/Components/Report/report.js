@@ -8,11 +8,11 @@ import {
   Dimensions,
 } from "react-native";
 import Picker from "react-native-picker-select";
-import { launchImageLibrary } from "react-native-image-picker";
 import DateComponent from "./Date";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as ImagePicker from "expo-image-picker";
 
 export default function report() {
   const [selectedValue, setSelectedValue] = useState(null);
@@ -20,7 +20,7 @@ export default function report() {
   const [selectedListItem, setSelectedListItem] = useState(null);
   const [inputText, setInputText] = useState("");
   const [selectFaculty, setSelectFaculty] = useState(null);
-  const [image, setImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
   const [initialRegion, setInitialRegion] = useState(null);
 
   useEffect(() => {
@@ -174,24 +174,45 @@ export default function report() {
     }
   };
 
-  const selectImage = () => {
-    let options = {
-      storageOptions: {
-        skipBackup: true,
-        path: "images",
-      },
-    };
+  // const selectImage = () => {
+  //   let options = {
+  //     storageOptions: {
+  //       skipBackup: true,
+  //       path: "images",
+  //     },
+  //   };
 
-    launchImageLibrary(options, (response) => {
-      if (response.didCancel) {
-        console.log("User cancelled image picker");
-      } else if (response.error) {
-        console.log("ImagePicker Error: ", response.error);
-      } else {
-        const source = { uri: response.uri };
-        setImage(source);
-      }
+  //   launchImageLibrary(options, (response) => {
+  //     if (response.didCancel) {
+  //       console.log("User cancelled image picker");
+  //     } else if (response.error) {
+  //       console.log("ImagePicker Error: ", response.error);
+  //     } else {
+  //       const source = { uri: response.uri };
+  //       setSelectedImage(source);
+  //       console.log(source);
+  //     }
+  //   });
+  // };
+
+  const launchImageLibrary = async () => {
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== "granted") {
+      alert("Sorry, we need media library permissions to select an image.");
+      return;
+    }
+
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
     });
+
+    if (!result.canceled && result.assets && result.assets.length > 0) {
+      console.log(result.assets[0].uri);
+      setSelectedImage(result.assets[0].uri);
+    }
   };
 
   const handleSubmit = async () => {
@@ -203,7 +224,7 @@ export default function report() {
       detail: inputText,
       Faculty: selectFaculty,
       location: initialRegion,
-      image: image,
+      image: selectedImage,
       status: "waiting",
     };
 
@@ -213,7 +234,7 @@ export default function report() {
       detail: inputText,
       Faculty: selectFaculty,
       location: initialRegion,
-      image: image,
+      image: selectedImage,
       status: "inProgress",
     };
 
@@ -223,7 +244,7 @@ export default function report() {
       detail: inputText,
       Faculty: selectFaculty,
       location: initialRegion,
-      image: image,
+      image: selectedImage,
       status: "done",
     };
 
@@ -436,14 +457,25 @@ export default function report() {
           >
             ใส่รูปภาพ:
           </Text>
-          <Button
-            title="เลือกรูปภาพจากแกลเลอรี่"
-            onPress={selectImage}
-            color="#E26199"
-          />
-          {image && (
-            <Image style={{ width: 200, height: 200 }} source={image} />
+          {selectedImage !== null ? (
+            <Text style={{ textAlign: "center" }}>อัพโหลดรูปภาพเรียบร้อย</Text>
+          ) : (
+            <Button
+              title="เลือกรูปภาพจากแกลเลอรี่"
+              onPress={launchImageLibrary}
+              color="#E26199"
+            />
           )}
+          {/* // selectedImage && (
+          //   <Image
+          //     source={selectedImage}
+          //     style={{
+          //       width: 200,
+          //       height: 200,
+          //       margin: 10,
+          //     }}
+          //   />
+          // ) */}
         </View>
 
         <View
