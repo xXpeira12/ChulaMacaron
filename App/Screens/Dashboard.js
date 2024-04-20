@@ -1,6 +1,7 @@
-import { View, Text , Dimensions , Button,  TouchableOpacity ,ScrollView} from 'react-native'
+import { View, Text , Dimensions , Button,  TouchableOpacity ,ScrollView, Image} from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
+import Macaron from '../../assets/img/logo.png';
 
 
 const screenWidth = Dimensions.get('window').width;
@@ -111,6 +112,7 @@ export default function Home({ navigation }) {
       </View>
     </View>
 
+    <Image source={Macaron} style={{width:'100%', resizeMode:'center'}}></Image>
     </View>
 
 

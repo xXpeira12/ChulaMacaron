@@ -1,7 +1,7 @@
-import { View, Text , Dimensions , Button,  TouchableOpacity ,ScrollView} from 'react-native'
+import { View, Text , Dimensions , Button,  TouchableOpacity ,ScrollView , Image} from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
-
+import Macaron from '../../assets/img/logo.png'; // replace with your image file path
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -108,9 +108,12 @@ export default function Home({ navigation }) {
       <Text style={{fontWeight:'bold',fontSize:20, color:'#E26199',paddingTop:10}}>น้ำประปา</Text>
       <Text style={{fontWeight:'bold',fontSize:20, color:'#E26199',paddingTop:10}}>อื่นๆ</Text>
       </View>
+      
       </View>
-    </View>
+      <Image source={Macaron} style={{width:'100%', resizeMode:'center'}}></Image>
 
+    </View>
+      
     </View>
 
 
