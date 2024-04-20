@@ -7,6 +7,10 @@ import {
   Image,
 } from "react-native";
 import React, { useLayoutEffect, useState, useEffect } from "react";
+import CustomCallout from '../Components/CustomCallout';
+import Red from "../../assets/img/placeholder (0).png";
+import Yellow from "../../assets/img/placeholder (1).png";
+import Green from "../../assets/img/placeholder (2).png";
 
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
@@ -217,7 +221,41 @@ export default function Home({ navigation }) {
                 showsMyLocationButton={true}
                 initialRegion={initialRegion}
                 onRegionChange={handleRegionChange}
-              ></MapView>
+              >
+                {allProblem &&
+                  JSON.parse(allProblem).map((problem, index) => {
+                    let markerImage;
+                    let width;
+                    let height;
+                    switch (problem.status) {
+                      case "waiting":
+                        markerImage = Red;
+                        width = 30;
+                        height = 30;
+                        break;
+                      case "inProgress":
+                        markerImage = Yellow;
+                        width = 30;
+                        height = 30;
+                        break;
+                      case "done":
+                        markerImage = Green;
+                        width = 27;
+                        height = 27;
+                        break;
+                      default:
+                        markerImage = Red;
+                        width = 30;
+                        height = 30;
+                    }
+                    return (
+                      <Marker key={index} coordinate={problem.location}>
+                        <Image source={markerImage} style={{ width: width, height: height }} />
+                        <CustomCallout marker={problem} />
+                      </Marker>
+                    );
+                  })}
+              </MapView>
             </View>
           </View>
         </View>
