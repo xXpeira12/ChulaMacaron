@@ -1,7 +1,9 @@
 import { View, Text , Dimensions , Button,  TouchableOpacity ,ScrollView, Image} from 'react-native'
-import React, { useLayoutEffect } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 import Macaron from '../../assets/img/logo.png';
+import Picker from 'react-native-picker-select';
+
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -16,10 +18,52 @@ const mockData = [
   // Add more items as needed
 ];
 
+const faculties = [
+  { label: 'คณะครุศาสตร์', value: 'คณะครุศาสตร์' },
+  { label: 'คณะจิตวิทยา', value: 'คณะจิตวิทยา' },
+  { label: 'คณะทันตแพทยศาสตร์', value: 'คณะทันตแพทยศาสตร์' },
+  { label: 'คณะนิติศาสตร์', value: 'คณะนิติศาสตร์' },
+  { label: 'คณะนิเทศศาสตร์', value: 'คณะนิเทศศาสตร์' },
+  { label: 'คณะพยาบาลศาสตร์', value: 'คณะพยาบาลศาสตร์' },
+  { label: 'คณะพาณิชยศาสตร์และการบัญชี', value: 'คณะพาณิชยศาสตร์และการบัญชี' },
+  { label: 'คณะแพทยศาสตร์', value: 'คณะแพทยศาสตร์' },
+  { label: 'คณะเภสัชศาสตร์', value: 'คณะเภสัชศาสตร์' },
+  { label: 'คณะรัฐศาสตร์', value: 'คณะรัฐศาสตร์' },
+  { label: 'คณะวิทยาศาสตร์', value: 'คณะวิทยาศาสตร์' },
+  { label: 'คณะวิทยาศาสตร์การกีฬา', value: 'คณะวิทยาศาสตร์การกีฬา' },
+  { label: 'คณะวิศวกรรมศาสตร์', value: 'คณะวิศวกรรมศาสตร์' },
+  { label: 'คณะศิลปกรรมศาสตร์', value: 'คณะศิลปกรรมศาสตร์' },
+  { label: 'คณะเศรษฐศาสตร์', value: 'คณะเศรษฐศาสตร์' },
+  { label: 'คณะสถาปัตยกรรมศาสตร์', value: 'คณะสถาปัตยกรรมศาสตร์' },
+  { label: 'คณะสหเวชศาสตร์', value: 'คณะสหเวชศาสตร์' },
+  { label: 'คณะสัตวแพทยศาสตร์', value: 'คณะสัตวแพทยศาสตร์' },
+  { label: 'คณะอักษรศาสตร์', value: 'คณะอักษรศาสตร์' },
+  { label: 'อื่น ๆ', value: 'อื่น ๆ' },
+];
+
+const currentStatus = [
+  { label: 'รอรับเรื่อง', value: 'รอรับเรื่อง' },
+  { label: 'กำลังดำเนินการ', value: 'กำลังดำเนินการ' },
+  { label: 'เสร็จสิ้น', value: 'เสร็จสิ้น' },
+]
+
+const placeholderFaculty = {
+  label: 'เลือกตามคณะ',
+  value: null,
+};
+
+const placeholderStatus = {
+  label: 'เลือกตามสถานะ',
+  value: null,
+};
+
 export default function Home({ navigation }) {
   useLayoutEffect(() => {
     navigation.setOptions({ headerShown: false });
   }, [navigation]);
+
+  const [selectFaculty, setSelectFaculty] = useState(null);
+  const [selectCurrentStatus, setCurrentStatus] = useState(null);
 
   return (
     <ScrollView style={{backgroundColor:'white'}}>
@@ -32,16 +76,27 @@ export default function Home({ navigation }) {
       <Text style= {{fontWeight:'bold' , color:'#E26199' ,fontSize:25}}>รายงานทั้งหมด</Text>
     </View>
 
-    <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+    {/* <View style={{flexDirection: 'row', justifyContent: 'space-between'}}> */}
+    
+      <View style={{ borderWidth: 2, borderRadius: 10, borderColor: '#E26199', margin: 5, padding: 10 }}>
+        <Picker
+          placeholder={placeholderFaculty}
+          items={faculties}
+          onValueChange={(selectFaculty) => {setSelectFaculty(selectFaculty)}}
+          value={selectFaculty}
+        />
+      </View>
 
-    <TouchableOpacity onPress={() => {}}  style={{justifyContent:'center',alignItems:'center',backgroundColor:'white', borderColor:'#E26199' , width:'47.5%', height:40, borderWidth:2, borderRadius:9 , paddingRight:'5%'}}>
-    <Text style={{textAlign:'center',fontWeight:'bold' , color:'#E26199'}}>คณะ</Text>
-    </TouchableOpacity>
-    <TouchableOpacity  onPress={() => {}}style={{justifyContent:'center',alignItems:'center',backgroundColor:'white', borderColor:'#E26199' , width:'47.5%', height:40, borderWidth:2, borderRadius:9}}>
-    <Text style={{textAlign:'center',fontWeight:'bold' , color:'#E26199'}}>ดำเนินการ</Text>
-    </TouchableOpacity>
+      <View style={{ borderWidth: 2, borderRadius: 10, borderColor: '#E26199', margin: 5, padding: 10 }}>
+          <Picker
+            placeholder={placeholderStatus}
+            items={currentStatus}
+            onValueChange={(selectCurrentStatus) => {setCurrentStatus(selectCurrentStatus)}}
+            value={selectCurrentStatus}
+          />
+      </View>
 
-    </View>
+    {/* </View> */}
 
     <View style={{ paddingTop:10}}>
     {mockData.map((item, index) => (
