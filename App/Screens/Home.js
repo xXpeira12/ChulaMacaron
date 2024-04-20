@@ -6,7 +6,7 @@ import {
   ScrollView,
   Image,
 } from "react-native";
-import React, { useLayoutEffect, useState, useEffect } from "react";
+import React, { useLayoutEffect, useState, useEffect, useMemo } from "react";
 import CustomCallout from "../Components/CustomCallout";
 import Red from "../../assets/img/placeholder (0).png";
 import Yellow from "../../assets/img/placeholder (1).png";
@@ -18,7 +18,12 @@ import Macaron from "../../assets/img/logo.png";
 import icon from "../../assets/icon.png";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { FontAwesome, MaterialCommunityIcons, Feather, Ionicons } from '@expo/vector-icons';
+import {
+  FontAwesome,
+  MaterialCommunityIcons,
+  Feather,
+  Ionicons,
+} from "@expo/vector-icons";
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -31,52 +36,95 @@ export default function Home({ navigation }) {
   const [countInProgressProblem, setCountInProgressProblem] = React.useState(0);
   const [countDoneProblem, setCountDoneProblem] = React.useState(0);
   const [countAllProblem, setCountAllProblem] = React.useState(0);
+  const [initialRegion, setInitialRegion] = useState(null);
 
   useLayoutEffect(() => {
     navigation.setOptions({ headerShown: false });
   }, [navigation]);
-  const [initialRegion, setInitialRegion] = useState(null);
 
   // Get waiting problem from async storage
-  useEffect(() => {
-    const getAllProblem = async () => {
-      try {
-        const value = await AsyncStorage.getItem("allProblem");
-        if (value !== null) {
-          setAllProblem(value);
-        }
-      } catch (e) {
-        // error reading value
-        console.log("Error reading allProblem", e);
-      }
-    };
+  // useEffect(() => {
+  //   const getAllProblem = async () => {
+  //     try {
+  //       const value = await AsyncStorage.getItem("allProblem");
+  //       if (value !== null) {
+  //         setAllProblem(value);
+  //       }
+  //     } catch (e) {
+  //       // error reading value
+  //       console.log("Error reading allProblem", e);
+  //     }
+  //   };
 
-    const findCountAllProblem = async () => {
-      await getAllProblem();
-      if (allProblem) {
-        const allProblemArray = JSON.parse(allProblem);
-        setCountAllProblem(allProblemArray.length);
-        let countWaiting = 0;
-        let countInProgress = 0;
-        let countDone = 0;
-        allProblemArray.forEach((problem) => {
-          if (problem.status === "waiting") {
-            countWaiting++;
-          } else if (problem.status === "inProgress") {
-            countInProgress++;
-          } else if (problem.status === "done") {
-            countDone++;
+  //   const findCountAllProblem = async () => {
+  //     await getAllProblem();
+  //     if (allProblem) {
+  //       const allProblemArray = JSON.parse(allProblem);
+  //       setCountAllProblem(allProblemArray.length);
+  //       let countWaiting = 0;
+  //       let countInProgress = 0;
+  //       let countDone = 0;
+  //       allProblemArray.forEach((problem) => {
+  //         if (problem.status === "waiting") {
+  //           countWaiting++;
+  //         } else if (problem.status === "inProgress") {
+  //           countInProgress++;
+  //         } else if (problem.status === "done") {
+  //           countDone++;
+  //         }
+  //       });
+  //       setCountWaitingProblem(countWaiting);
+  //       setCountInProgressProblem(countInProgress);
+  //       setCountDoneProblem(countDone);
+  //     }
+  //   };
+  //   findCountAllProblem();
+  // }, [allProblem]);
+
+  // Get waiting problem from async storage
+
+  useEffect(() => {
+    const intervalID = setInterval(() => {
+      const getAllProblem = async () => {
+        try {
+          const value = await AsyncStorage.getItem("allProblem");
+          if (value !== null) {
+            setAllProblem(value);
           }
-        });
-        setCountWaitingProblem(countWaiting);
-        setCountInProgressProblem(countInProgress);
-        setCountDoneProblem(countDone);
-      }
+        } catch (e) {
+          // error reading value
+          console.log("Error reading allProblem", e);
+        }
+      };
+
+      const findCountAllProblem = async () => {
+        await getAllProblem();
+        if (allProblem) {
+          const allProblemArray = JSON.parse(allProblem);
+          setCountAllProblem(allProblemArray.length);
+          let countWaiting = 0;
+          let countInProgress = 0;
+          let countDone = 0;
+          allProblemArray.forEach((problem) => {
+            if (problem.status === "waiting") {
+              countWaiting++;
+            } else if (problem.status === "inProgress") {
+              countInProgress++;
+            } else if (problem.status === "done") {
+              countDone++;
+            }
+          });
+          setCountWaitingProblem(countWaiting);
+          setCountInProgressProblem(countInProgress);
+          setCountDoneProblem(countDone);
+        }
+      };
+      findCountAllProblem();
+    }, 1000);
+    return () => {
+      clearInterval(intervalID);
     };
-    findCountAllProblem();
   }, [allProblem]);
-  // console.log(allProblem);
-  // console.log(countAllProblem);
 
   useEffect(() => {
     const getLocation = async () => {
@@ -127,7 +175,14 @@ export default function Home({ navigation }) {
         >
           CHULA MACARON
         </Text>
-        <Text style={{ fontSize: 16, textAlign: "center", color: "#E26199", fontFamily: 'chulaReg' }}>
+        <Text
+          style={{
+            fontSize: 16,
+            textAlign: "center",
+            color: "#E26199",
+            fontFamily: "chulaReg",
+          }}
+        >
           make Nisits' lives better
         </Text>
 
@@ -136,24 +191,43 @@ export default function Home({ navigation }) {
             {/* <Text style= {{paddingTop:20, color:'#E26199', fontFamily: 'chulaBold'}}>You can report any problems around Chulalongkorn University.</Text> */}
 
             <View style={{ paddingTop: 20 }}>
-              <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
                 <Image
                   source={icon}
-                  style={{ width: 200, height: 200, resizeMode: 'cover' }}
+                  style={{ width: 200, height: 200, resizeMode: "cover" }}
                 />
               </View>
 
-              <Text style={{ color: "#E26199", fontSize: 25, paddingTop:15, fontFamily: "chulaBold", }}>แพลตฟอร์ม</Text>
+              <Text
+                style={{
+                  color: "#E26199",
+                  fontSize: 25,
+                  paddingTop: 15,
+                  fontFamily: "chulaBold",
+                }}
+              >
+                แพลตฟอร์ม
+              </Text>
 
               <Text
-                style={{ color: "#E26199", fontSize: 25, paddingBottom: 10, fontFamily: "chulaBold", }}
+                style={{
+                  color: "#E26199",
+                  fontSize: 25,
+                  paddingBottom: 10,
+                  fontFamily: "chulaBold",
+                }}
               >
                 แจ้งและจัดการปัญหาในจุฬา
               </Text>
-
             </View>
 
-    {/* <TouchableOpacity onPress={() => {}} style={{ backgroundColor: '#E26199', padding: 20, alignItems: 'center',  borderRadius: 10 ,
+            {/* <TouchableOpacity onPress={() => {}} style={{ backgroundColor: '#E26199', padding: 20, alignItems: 'center',  borderRadius: 10 ,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -166,7 +240,7 @@ export default function Home({ navigation }) {
   }}>
     <Text style={{ color: 'white', fontSize: 18 }}>แจ้งปัญหากดที่ปุ่ม Report</Text>
     </TouchableOpacity> */}
-    </View>
+          </View>
 
           <View
             style={{
@@ -284,7 +358,16 @@ export default function Home({ navigation }) {
                 {((countWaitingProblem / countAllProblem) * 100).toFixed(2)}%)
               </Text>
             </View>
-            <View style= {{ height: 100, width: 100, marginHorizontal: 15, marginVertical: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <View
+              style={{
+                height: 100,
+                width: 100,
+                marginHorizontal: 15,
+                marginVertical: 1,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
               <FontAwesome name="paper-plane" size={50} color="white" />
             </View>
           </View>
@@ -326,7 +409,16 @@ export default function Home({ navigation }) {
                 %)
               </Text>
             </View>
-            <View style= {{ height: 100, width: 100, marginHorizontal: 15, marginVertical: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <View
+              style={{
+                height: 100,
+                width: 100,
+                marginHorizontal: 15,
+                marginVertical: 1,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
               <MaterialCommunityIcons name="tools" size={50} color="white" />
             </View>
           </View>
@@ -368,12 +460,20 @@ export default function Home({ navigation }) {
                 %)
               </Text>
             </View>
-            <View style= {{ height: 100, width: 100, marginHorizontal: 15, marginVertical: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <View
+              style={{
+                height: 100,
+                width: 100,
+                marginHorizontal: 15,
+                marginVertical: 1,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
               <Feather name="check-circle" size={50} color="white" />
             </View>
           </View>
         </View>
-      
 
         <View
           style={{
@@ -410,7 +510,16 @@ export default function Home({ navigation }) {
               {countAllProblem}
             </Text>
           </View>
-          <View style= {{ height: 100, width: 100, marginHorizontal: 15, marginVertical: 1, justifyContent: 'center', alignItems: 'center'}}>
+          <View
+            style={{
+              height: 100,
+              width: 100,
+              marginHorizontal: 15,
+              marginVertical: 1,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             <Ionicons name="stats-chart" size={50} color="white" />
           </View>
         </View>
