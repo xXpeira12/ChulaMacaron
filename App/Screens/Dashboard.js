@@ -9,10 +9,10 @@ const { height } = Dimensions.get('window')
 
 // Mock data repository
 const mockData = [
-  {picture:'', header: 'Header 1', description: 'Description 1', location: 'Location 1' },
-  { picture:'',header: 'Header 2', description: 'Description 2', location: 'Location 2' },
-  { picture:'',header: 'Header 3', description: 'Description 3', location: 'Location 3' },
-  { picture:'',header: 'Header 4', description: 'Description 4', location: 'Location 4' },
+  {picture:require('../../assets/img/peko.jpg'), header: 'Header 1', description: 'Description 1', location: 'Location 1' },
+  { picture:require('../../assets/img/peko.jpg'),header: 'Header 2', description: 'Description 2', location: 'Location 2' },
+  { picture:require('../../assets/img/peko.jpg'),header: 'Header 3', description: 'Description 3', location: 'Location 3' },
+  { picture:require('../../assets/img/peko.jpg'),header: 'Header 4', description: 'Description 4', location: 'Location 4' },
   // Add more items as needed
 ];
 
@@ -45,6 +45,7 @@ export default function Home({ navigation }) {
         <Text style={{fontWeight: 'bold', fontSize: 20}}>{item.header}</Text>
         <Text style={{fontSize: 16}}>{item.description}</Text>
         <Text style={{fontSize: 16}}>{item.location}</Text>
+        <Image source={item.picture} style={{width: 100, height: 100}} />
       </View>
     ))}
 
