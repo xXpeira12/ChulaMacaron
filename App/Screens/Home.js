@@ -1,5 +1,6 @@
 import { View, Text , Dimensions , Button,  TouchableOpacity } from 'react-native'
 import React, { useLayoutEffect } from 'react'
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 
 
 const screenWidth = Dimensions.get('window').width;
@@ -43,6 +44,16 @@ export default function Home({ navigation }) {
 
     <View style={{flexDirection: screenWidth > 769 ? 'column' : 'row' , paddingTop:20}}>
       <Text style={{fontWeight:'bold',fontSize:25 , color:'#E26199'}}>OverView</Text>
+      <MapView  
+        style={{
+          width: Dimensions.get('screen').width*0.89,
+          height: Dimensions.get('screen').height*0.23,
+          borderRadius: 20
+        }}
+        provider={PROVIDER_GOOGLE}
+        showsUserLocation={true}
+      >
+      </MapView>
     </View>
 
     </View>
