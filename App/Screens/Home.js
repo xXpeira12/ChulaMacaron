@@ -19,8 +19,8 @@ export default function Home({ navigation }) {
     <View style={{backgroundColor:'white', padding:50}}>
      
 
-    <Image source={Macaron} style={{width:'100%', resizeMode:'center'}}></Image>
-    <Text style={{fontSize:30, textAlign:'center' , paddingTop:0, color:'#E26199'}}>CHULA MACARON</Text>
+ 
+    <Text style={{fontSize:30, textAlign:'center' , paddingTop:20, color:'#E26199'}}>CHULA MACARON</Text>
     <Text style={{fontSize:16, textAlign:'center', color:'#E26199'}}>make Nisits' lives better</Text>
 
     <View style={{flexDirection: screenWidth > 769 ? 'row' : 'column'}}>
@@ -89,6 +89,7 @@ export default function Home({ navigation }) {
 
 </View>
     </View>
+    <Image source={Macaron} style={{width:'100%', resizeMode:'center'}}></Image>
 
 
 
