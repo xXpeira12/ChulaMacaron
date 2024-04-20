@@ -4,7 +4,10 @@ import TabNavigation from './App/Navigations/TabNavigation';
 import { NavigationContainer } from '@react-navigation/native';
 
 
+
+
 export default function App() {
+ 
   return (
     <View style={styles.container}>
       <NavigationContainer>
@@ -14,6 +17,8 @@ export default function App() {
     </View>
   );
 }
+
+
 
 const styles = StyleSheet.create({
   container: {
