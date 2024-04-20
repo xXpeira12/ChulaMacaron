@@ -18,7 +18,7 @@ export default function TabNavigation() {
   
     }}
     >
-        <Tab.Screen name="Home" component={Home}
+        <Tab.Screen name="ChulaMacaron" component={Home}
           options={{
             tabBarLabel: ({ focused }) => (
               <Text style={{ color: focused ? '#E26199' : 'gray' }}>Home</Text>
