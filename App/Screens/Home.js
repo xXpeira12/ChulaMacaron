@@ -1,7 +1,6 @@
 import { View, Text , Dimensions , Button,  TouchableOpacity } from 'react-native'
 import React, { useLayoutEffect } from 'react'
 
-import GoogleMapView from '../Components/Home/GoogleMapView';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -19,14 +18,14 @@ export default function Home({ navigation }) {
     <Text style={{fontSize:16, textAlign:'center', fontWeight:'bold', color:'#E26199'}}>make Nisit's life better</Text>
 
     <View style={{flexDirection: screenWidth > 769 ? 'row' : 'column'}}>
-    <View style={{
-        width: screenWidth > 769 ? '50%' : '100%',
-        }}>
+    <View style={{width: screenWidth > 769 ? '50%' : '100%',}}>
     <Text style= {{paddingTop:20, color:'#E26199'}}>You can report any problems around Chulalongkorn University.</Text>
+
     <View style= {{paddingTop:20}}>
       <Text style= {{fontWeight:'bold' , color:'#E26199' ,fontSize:25}}>แพลตฟอร์ม</Text>
       <Text style= {{fontWeight:'bold' , color:'#E26199' ,fontSize:25, paddingBottom:10}}>แจ้งและจัดการปัญหาในจุฬา</Text>
     </View>
+
     <TouchableOpacity onPress={() => {}} style={{ backgroundColor: '#E26199', padding: 20, alignItems: 'center',  borderRadius: 10 ,
     shadowColor: "#000",
     shadowOffset: {
@@ -44,6 +43,8 @@ export default function Home({ navigation }) {
 
     <View style={{flexDirection: screenWidth > 769 ? 'column' : 'row' , paddingTop:20}}>
       <Text style={{fontWeight:'bold',fontSize:25 , color:'#E26199'}}>OverView</Text>
+    </View>
+
     </View>
     </View>
   )
