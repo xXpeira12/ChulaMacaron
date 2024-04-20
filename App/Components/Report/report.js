@@ -43,6 +43,10 @@ export default function report() {
     getLocation();
   }, []);
 
+  const generateUniqueId = () => {
+    return Date.now().toString(36) + Math.random().toString(36).substr(2);
+  };
+
   const handleRegionChange = (region) => {
     const { latitude, longitude } = region;
     const newCoordinate = {
@@ -136,32 +140,35 @@ export default function report() {
     setBgColor('#f5b7ce');
 
     let newReport = {
+      id: generateUniqueId(),
       rootProblem: selectedValue,
       detailProblem: selectedListItem,
       detail: inputText,
       Faculty: selectFaculty,
       location: initialRegion,
-      image: image,
+      image: require('../../../assets/img/peko.jpg'),
       status: "waiting",
     };
 
     let mockReport1 = {
+      id: generateUniqueId(),
       rootProblem: selectedValue,
       detailProblem: selectedListItem,
       detail: inputText,
       Faculty: selectFaculty,
       location: initialRegion,
-      image: image,
+      image: require('../../../assets/img/peko.jpg'),
       status: "inProgress",
     };
 
     let mockReport2 = {
+      id: generateUniqueId(),
       rootProblem: selectedValue,
       detailProblem: selectedListItem,
       detail: inputText,
       Faculty: selectFaculty,
       location: initialRegion,
-      image: image,
+      image: require('../../../assets/img/peko.jpg'),
       status: "done",
     };
 
@@ -185,6 +192,7 @@ export default function report() {
 
       // Store the updated array back to AsyncStorage
       await AsyncStorage.setItem("allProblem", JSON.stringify(reportArray));
+      // await AsyncStorage.removeItem("allProblem");
       console.log("Object added to array and stored successfully");
     } catch (error) {
       console.log("Error storing array:", error);
