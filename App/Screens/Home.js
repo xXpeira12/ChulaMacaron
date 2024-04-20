@@ -254,7 +254,7 @@ export default function Home({ navigation }) {
                 }}
               >
                 {countWaitingProblem}(
-                {(countWaitingProblem / countAllProblem) * 100}%)
+                {((countWaitingProblem / countAllProblem) * 100).toFixed(2)}%)
               </Text>
             </View>
             <View
@@ -301,7 +301,8 @@ export default function Home({ navigation }) {
                 }}
               >
                 {countInProgressProblem}(
-                {(countInProgressProblem / countAllProblem) * 100}%)
+                {((countInProgressProblem / countAllProblem) * 100).toFixed(2)}
+                %)
               </Text>
             </View>
             <View
@@ -347,7 +348,8 @@ export default function Home({ navigation }) {
                   fontWeight: "bold",
                 }}
               >
-                {countDoneProblem}({(countDoneProblem / countAllProblem) * 100}
+                {countDoneProblem}(
+                {((countDoneProblem / countAllProblem) * 100).toFixed(2)}
                 %)
               </Text>
             </View>
@@ -364,6 +366,51 @@ export default function Home({ navigation }) {
           </View>
         </View>
 
+        <View
+          style={{
+            height: 100,
+            width: "100%",
+            borderRadius: 10,
+            backgroundColor: "#71bef3",
+            marginTop: 20,
+            paddingBottom: 10,
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          <View>
+            <Text
+              style={{
+                color: "white",
+                padding: 15,
+                fontSize: 20,
+                fontWeight: "bold",
+              }}
+            >
+              ทั้งหมด
+            </Text>
+            <Text
+              style={{
+                color: "white",
+                paddingLeft: 15,
+                fontSize: 20,
+                fontWeight: "bold",
+              }}
+            >
+              {countAllProblem}
+            </Text>
+          </View>
+          <View
+            style={{
+              backgroundColor: "black",
+              height: 80,
+              width: 80,
+              marginHorizontal: 15,
+              marginVertical: 10,
+              borderRadius: 9,
+            }}
+          ></View>
+        </View>
         <View style={{ paddingTop: 30 }}>
           <Text style={{ fontWeight: "bold", fontSize: 25, color: "#E26199" }}>
             KIND OF REPORT ISSUES WE ACCEPT
