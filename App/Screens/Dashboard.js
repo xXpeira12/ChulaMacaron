@@ -3,10 +3,18 @@ import React, { useLayoutEffect } from 'react'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 import Macaron from '../../assets/img/logo.png';
 
-
 const screenWidth = Dimensions.get('window').width;
 
 const { height } = Dimensions.get('window')
+
+// Mock data repository
+const mockData = [
+  {picture:'', header: 'Header 1', description: 'Description 1', location: 'Location 1' },
+  { picture:'',header: 'Header 2', description: 'Description 2', location: 'Location 2' },
+  { picture:'',header: 'Header 3', description: 'Description 3', location: 'Location 3' },
+  { picture:'',header: 'Header 4', description: 'Description 4', location: 'Location 4' },
+  // Add more items as needed
+];
 
 export default function Home({ navigation }) {
   useLayoutEffect(() => {
@@ -17,8 +25,6 @@ export default function Home({ navigation }) {
     <ScrollView style={{backgroundColor:'white'}}>
     <View style={{backgroundColor:'white', padding:50}}>
      
-  
-
     <View style={{flexDirection: screenWidth > 769 ? 'row' : 'column'}}>
     <View style={{width: screenWidth > 769 ? '100%' : '100%',}}>
 
@@ -29,22 +35,24 @@ export default function Home({ navigation }) {
     <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
 
     <TouchableOpacity onPress={() => {}}  style={{backgroundColor:'white', borderColor:'#E26199' , width:'47.5%', height:40, borderWidth:2, borderRadius:9 , paddingRight:'5%'}}></TouchableOpacity>
-  <TouchableOpacity  onPress={() => {}}style={{backgroundColor:'white', borderColor:'#E26199' , width:'47.5%', height:40, borderWidth:2, borderRadius:9}}></TouchableOpacity>
-
-</View>
-    </View>
-
-
+    <TouchableOpacity  onPress={() => {}}style={{backgroundColor:'white', borderColor:'#E26199' , width:'47.5%', height:40, borderWidth:2, borderRadius:9}}></TouchableOpacity>
 
     </View>
-    
 
+
+    {mockData.map((item, index) => (
+      <View key={index} style={{paddingVertical: 20}}>
+        <Text style={{fontWeight: 'bold', fontSize: 20}}>{item.header}</Text>
+        <Text style={{fontSize: 16}}>{item.description}</Text>
+        <Text style={{fontSize: 16}}>{item.location}</Text>
+      </View>
+    ))}
+
+    </View>
+    </View>
 
     <Image source={Macaron} style={{width:'100%', resizeMode:'center'}}></Image>
     </View>
-
-
-
     </ScrollView>
   )
 }
