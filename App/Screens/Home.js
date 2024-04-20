@@ -18,6 +18,8 @@ import Macaron from "../../assets/img/logo.png";
 import icon from "../../assets/icon.png";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import { FontAwesome, MaterialCommunityIcons, Feather, Ionicons } from '@expo/vector-icons';
+
 const screenWidth = Dimensions.get("window").width;
 
 const { height } = Dimensions.get("window");
@@ -280,16 +282,9 @@ export default function Home({ navigation }) {
                 {((countWaitingProblem / countAllProblem) * 100).toFixed(2)}%)
               </Text>
             </View>
-            <View
-              style={{
-                backgroundColor: "black",
-                height: 80,
-                width: 80,
-                marginHorizontal: 15,
-                marginVertical: 10,
-                borderRadius: 9,
-              }}
-            ></View>
+            <View style= {{ height: 100, width: 100, marginHorizontal: 15, marginVertical: 1, justifyContent: 'center', alignItems: 'center'}}>
+              <FontAwesome name="paper-plane" size={50} color="white" />
+            </View>
           </View>
 
           <View
@@ -328,16 +323,9 @@ export default function Home({ navigation }) {
                 %)
               </Text>
             </View>
-            <View
-              style={{
-                backgroundColor: "black",
-                height: 80,
-                width: 80,
-                marginHorizontal: 15,
-                marginVertical: 10,
-                borderRadius: 9,
-              }}
-            ></View>
+            <View style= {{ height: 100, width: 100, marginHorizontal: 15, marginVertical: 1, justifyContent: 'center', alignItems: 'center'}}>
+              <MaterialCommunityIcons name="tools" size={50} color="white" />
+            </View>
           </View>
 
           <View
@@ -376,16 +364,9 @@ export default function Home({ navigation }) {
                 %)
               </Text>
             </View>
-            <View
-              style={{
-                backgroundColor: "black",
-                height: 80,
-                width: 80,
-                marginHorizontal: 15,
-                marginVertical: 10,
-                borderRadius: 9,
-              }}
-            ></View>
+            <View style= {{ height: 100, width: 100, marginHorizontal: 15, marginVertical: 1, justifyContent: 'center', alignItems: 'center'}}>
+              <Feather name="check-circle" size={50} color="white" />
+            </View>
           </View>
         </View>
       
@@ -424,16 +405,9 @@ export default function Home({ navigation }) {
               {countAllProblem}
             </Text>
           </View>
-          <View
-            style={{
-              backgroundColor: "black",
-              height: 80,
-              width: 80,
-              marginHorizontal: 15,
-              marginVertical: 10,
-              borderRadius: 9,
-            }}
-          ></View>
+          <View style= {{ height: 100, width: 100, marginHorizontal: 15, marginVertical: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <Ionicons name="stats-chart" size={50} color="white" />
+          </View>
         </View>
         <Image
           source={Macaron}
