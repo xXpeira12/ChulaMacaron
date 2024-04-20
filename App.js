@@ -57,7 +57,7 @@ export default function App() {
     <View style={styles.container}>
       <NavigationContainer>
       
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName="Home">
           <Stack.Screen name="ReportScreen" component={ReportScreen} options={{ headerLeft: () => null,  headerShown: false, gestureEnabled: false }} />
           <Stack.Screen name="Dashboard" component={Dashboard} options={{ headerLeft: () => null,  headerShown: false, gestureEnabled: false }} />
           <Stack.Screen name="ProblemScreen" component={ProblemScreen} options={{ headerLeft: () => null,  headerShown: false, gestureEnabled: false }} />
