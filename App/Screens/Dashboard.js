@@ -13,10 +13,10 @@ const { height } = Dimensions.get('window')
 
 // Mock data repository
 const mockData = [
-  {picture:require('../../assets/img/peko.jpg'), header: 'Header 1', description: 'Description 1', location: 'Location 1' },
-  { picture:require('../../assets/img/peko.jpg'),header: 'Header 2', description: 'Description 2', location: 'Location 2' },
-  { picture:require('../../assets/img/peko.jpg'),header: 'Header 3', description: 'Description 3', location: 'Location 3' },
-  { picture:require('../../assets/img/peko.jpg'),header: 'Header 4', description: 'Description 4', location: 'Location 4' },
+  {picture:require('../../assets/img/peko.jpg'), prob: 'ไฟฟ้า', detail: 'ไฟดับ', faculty: 'คณะวิศวกรรมศาสตร์', status: 'รอรับเรื่อง'},
+  { picture:require('../../assets/img/peko.jpg'), prob: 'ไฟฟ้า', detail: 'ไฟกระพริบ', faculty: 'คณะสถาปัตยกรรมศาสตร์', status: 'รอรับเรื่อง' },
+  { picture:require('../../assets/img/peko.jpg'), prob: 'ถนน', detail: 'ถนนลื่น', faculty: 'คณะวิศวกรรมศาสตร์', status: 'เสร็จสิ้น' },
+  { picture:require('../../assets/img/peko.jpg'), prob: 'ต้นไม้', detail: 'กิ่งไม้บดบังทัศนวิสัย', faculty: 'คณะนิติศาสตร์', status: 'กำลังดำเนินการ' },
   // Add more items as needed
 ];
 
@@ -59,6 +59,19 @@ const placeholderStatus = {
   value: null,
 };
 
+const statusColors = {
+  'รอรับเรื่อง': '#FF8C8C',
+  'กำลังดำเนินการ': '#FFDAAF',
+  'เสร็จสิ้น': '#A1E0A7',
+  // Add more statuses as needed...
+};
+
+const StatusWithColor = ({ status }) => {
+  // Look up the color for the status
+  const color = statusColors[status] || 'gray';
+  return color;
+};
+
 export default function Dashboard({ navigation }) {
 
   useLayoutEffect(() => {
@@ -67,6 +80,10 @@ export default function Dashboard({ navigation }) {
 
   const [selectFaculty, setSelectFaculty] = useState(null);
   const [selectCurrentStatus, setCurrentStatus] = useState(null);
+  const filteredElements = mockData.filter(element => 
+    (!selectFaculty || element.faculty === selectFaculty) && 
+    (!selectCurrentStatus || element.status === selectCurrentStatus)
+  );
 
   return (
     <ScrollView style={{backgroundColor:'white'}}>
@@ -101,7 +118,40 @@ export default function Dashboard({ navigation }) {
 
     {/* </View> */}
 
-    <View style={{ paddingTop:10}}>
+    {filteredElements.map((item, index) => (
+      <View style={{paddingTop:20}}>
+        <View key={index} style={{ borderColor:"#E26199" , borderWidth:2 , borderRadius:10 }}>
+          <View style={{padding:10, flexDirection:'row'}}>
+
+            <View>
+              <Image source={item.picture} style={{width: 150, height: 150, borderRadius:8.6}} />
+            </View>
+
+            <View style={{paddingLeft:15, flex: 1, justifyContent: 'space-between'}}>
+
+              <View>
+                <Text style={{fontWeight: 'bold', fontSize: 20}}>{item.prob}</Text>
+                <Text style={{fontSize: 20 , fontWeight:'bold'}}>{item.detail}</Text>
+                <Text style={{fontSize: 16}}>{item.faculty}</Text>
+
+                {/* // status color */}
+                {/* <Text style={{fontSize: 16}}>{item.status}</Text> */}
+                <View style={{backgroundColor: StatusWithColor({status: item.status}), padding: 5, borderRadius: 5}}>
+                </View>
+
+              </View>
+
+              <TouchableOpacity onPress={() => navigation.navigate('Detail', {item: item})}  style={{backgroundColor:'#E26199', width:'100%', height:40,  borderRadius:9 , paddingRight:'5%', alignItems:'center', justifyContent:'center'}}>
+                <Text style={{textAlign:'center',fontWeight:'bold' , color:'white'}}>See Detail</Text>
+              </TouchableOpacity>
+
+            </View>
+          </View>
+        </View>
+      </View>
+    ))}
+
+    {/* <View style={{ paddingTop:10}}>
     {mockData.map((item, index) => (
       <View style={{paddingTop:20}}>
   <View key={index} style={{ borderColor:"#E26199" , borderWidth:2 , borderRadius:10 }}>
@@ -113,9 +163,10 @@ export default function Dashboard({ navigation }) {
 
     <View style={{paddingLeft:15, flex: 1, justifyContent: 'space-between'}}>
       <View>
-        <Text style={{fontWeight: 'bold', fontSize: 20}}>{item.header}</Text>
-        <Text style={{fontSize: 20 , fontWeight:'bold'}}>{item.description}</Text>
-        <Text style={{fontSize: 16}}>{item.location}</Text>
+        <Text style={{fontWeight: 'bold', fontSize: 20}}>{item.prob}</Text>
+        <Text style={{fontSize: 20 , fontWeight:'bold'}}>{item.detail}</Text>
+        <Text style={{fontSize: 16}}>{item.faculty}</Text>
+        <Text style={{fontSize: 16}}>{item.status}</Text>
       </View>
       <TouchableOpacity onPress={() => navigation.navigate('Detail', { item })}  style={{backgroundColor:'#E26199', width:'100%', height:40,  borderRadius:9 , paddingRight:'5%', alignItems:'center', justifyContent:'center'}}>
   <Text style={{textAlign:'center',fontWeight:'bold' , color:'white'}}>See Detail</Text>
@@ -126,7 +177,7 @@ export default function Dashboard({ navigation }) {
 </View>
 </View>
 ))}
-    </View>
+    </View> */}
 
     </View>
     </View>
