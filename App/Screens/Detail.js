@@ -46,8 +46,8 @@ export default function Detail({ route }) {
         <Text style={{ fontWeight: 'bold', fontSize: 20 ,paddingBottom:20,color:'gray' }}>{item.status}</Text>
 
 
-        <View style={{height: screenHeight *0.25, backgroundColor:'#E26199', borderRadius:9, alignItems:'center',justifyContent:'center',marginBottom:30}}>
-          <Text style={{fontSize:30, fontWeight:'bold', color:'white'}}>googleMap</Text>
+        <View style={{height: screenHeight *0.25, borderRadius:9, alignItems:'center',justifyContent:'center',marginBottom:30}}>
+  
           <MapView
               ref={mapRef}
               style={{
