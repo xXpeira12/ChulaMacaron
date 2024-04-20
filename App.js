@@ -56,14 +56,15 @@ export default function App() {
   return (
     <View style={styles.container}>
       <NavigationContainer>
-       
+      
         <Stack.Navigator>
-          <Stack.Screen name="ReportScreen" component={ReportScreen} />
-          <Stack.Screen name="Dashboard" component={Dashboard} />
-          <Stack.Screen name="ProblemScreen" component={ProblemScreen} />
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Detail" component={Detail} />
+          <Stack.Screen name="ReportScreen" component={ReportScreen} options={{ headerLeft: () => null,  headerShown: false, gestureEnabled: false }} />
+          <Stack.Screen name="Dashboard" component={Dashboard} options={{ headerLeft: () => null,  headerShown: false, gestureEnabled: false }} />
+          <Stack.Screen name="ProblemScreen" component={ProblemScreen} options={{ headerLeft: () => null,  headerShown: false, gestureEnabled: false }} />
+          <Stack.Screen name="Home" component={Home} options={{ headerLeft: () => null,  headerShown: false, gestureEnabled: false }} />
+          <Stack.Screen name="Detail" component={Detail} options={{ headerLeft: () => null,  headerShown: false }}/>
         </Stack.Navigator>
+        
         <NavigationButtons />
       </NavigationContainer>
     </View>
