@@ -18,9 +18,7 @@ const screenWidth = Dimensions.get("window").width;
 const { height } = Dimensions.get("window");
 
 export default function Home({ navigation }) {
-  const [waitingProblem, setWaitingProblem] = React.useState(null);
-  const [inProgressProblem, setInProgressProblem] = React.useState(null);
-  const [doneProblem, setDoneProblem] = React.useState(null);
+  const [allProblem, setAllProblem] = React.useState(null);
 
   const [countWaitingProblem, setCountWaitingProblem] = React.useState(0);
   const [countInProgressProblem, setCountInProgressProblem] = React.useState(0);
@@ -34,36 +32,44 @@ export default function Home({ navigation }) {
 
   // Get waiting problem from async storage
   useEffect(() => {
-    const getWaitingProblem = async () => {
+    const getAllProblem = async () => {
       try {
-        const value = await AsyncStorage.getItem("waitingProblem");
+        const value = await AsyncStorage.getItem("allProblem");
         if (value !== null) {
-          setWaitingProblem(value);
+          setAllProblem(value);
         }
       } catch (e) {
         // error reading value
-        console.log("Error reading waitingProblem", e);
+        console.log("Error reading allProblem", e);
       }
     };
 
-    const findCountWaitingProblem = async () => {
-      await getWaitingProblem();
-      if (waitingProblem) {
-        const waitingProblemArray = JSON.parse(waitingProblem);
-        setCountWaitingProblem(waitingProblemArray.length);
+    const findCountAllProblem = async () => {
+      await getAllProblem();
+      if (allProblem) {
+        const allProblemArray = JSON.parse(allProblem);
+        setCountAllProblem(allProblemArray.length);
+        let countWaiting = 0;
+        let countInProgress = 0;
+        let countDone = 0;
+        allProblemArray.forEach((problem) => {
+          if (problem.status === "waiting") {
+            countWaiting++;
+          } else if (problem.status === "inProgress") {
+            countInProgress++;
+          } else if (problem.status === "done") {
+            countDone++;
+          }
+        });
+        setCountWaitingProblem(countWaiting);
+        setCountInProgressProblem(countInProgress);
+        setCountDoneProblem(countDone);
       }
     };
-
-    findCountWaitingProblem();
-  });
-  // console.log(waitingProblem);
-  // console.log(countWaitingProblem);
-
-  useEffect(() => {
-    setCountAllProblem(
-      countWaitingProblem + countInProgressProblem + countDoneProblem
-    );
-  }, [countWaitingProblem, countInProgressProblem, countDoneProblem]);
+    findCountAllProblem();
+  }, [allProblem]);
+  // console.log(allProblem);
+  // console.log(countAllProblem);
 
   useEffect(() => {
     const getLocation = async () => {

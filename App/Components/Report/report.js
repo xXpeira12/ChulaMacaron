@@ -204,11 +204,32 @@ export default function report() {
       Faculty: selectFaculty,
       location: initialRegion,
       image: image,
+      status: "waiting",
+    };
+
+    let mockReport1 = {
+      rootProblem: selectedValue,
+      detailProblem: selectedListItem,
+      detail: inputText,
+      Faculty: selectFaculty,
+      location: initialRegion,
+      image: image,
+      status: "inProgress",
+    };
+
+    let mockReport2 = {
+      rootProblem: selectedValue,
+      detailProblem: selectedListItem,
+      detail: inputText,
+      Faculty: selectFaculty,
+      location: initialRegion,
+      image: image,
+      status: "done",
     };
 
     try {
       // Retrieve the existing array from AsyncStorage
-      const existingReport = await AsyncStorage.getItem("waitingProblem");
+      const existingReport = await AsyncStorage.getItem("allProblem");
       let reportArray = new Array();
       let tempArray = JSON.parse(existingReport);
 
@@ -220,10 +241,12 @@ export default function report() {
       }
       // Add the new object to the array
       reportArray.push(newReport);
+      // reportArray.push(mockReport1);
+      // reportArray.push(mockReport2);
       console.log(reportArray);
 
       // Store the updated array back to AsyncStorage
-      await AsyncStorage.setItem("waitingProblem", JSON.stringify(reportArray));
+      await AsyncStorage.setItem("allProblem", JSON.stringify(reportArray));
       console.log("Object added to array and stored successfully");
     } catch (error) {
       console.log("Error storing array:", error);

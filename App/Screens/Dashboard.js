@@ -10,7 +10,6 @@ import {
 import React, { useEffect, useLayoutEffect } from "react";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import Macaron from "../../assets/img/logo.png";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
 
 const screenWidth = Dimensions.get("window").width;
@@ -18,51 +17,9 @@ const screenWidth = Dimensions.get("window").width;
 const { height } = Dimensions.get("window");
 
 export default function Home({ navigation }) {
-  const [waitingProblem, setWaitingProblem] = React.useState(null);
-  const [inProgressProblem, setInProgressProblem] = React.useState(null);
-  const [doneProblem, setDoneProblem] = React.useState(null);
-
-  const [countWaitingProblem, setCountWaitingProblem] = React.useState(0);
-  const [countInProgressProblem, setCountInProgressProblem] = React.useState(0);
-  const [countDoneProblem, setCountDoneProblem] = React.useState(0);
-  const [countAllProblem, setCountAllProblem] = React.useState(0);
-
   useLayoutEffect(() => {
     navigation.setOptions({ headerShown: false });
   }, [navigation]);
-
-  // Get waiting problem from async storage
-  useEffect(() => {
-    const getWaitingProblem = async () => {
-      try {
-        const value = await AsyncStorage.getItem("waitingProblem");
-        if (value !== null) {
-          setWaitingProblem(value);
-        }
-      } catch (e) {
-        // error reading value
-        console.log("Error reading waitingProblem", e);
-      }
-    };
-
-    const findCountWaitingProblem = async () => {
-      await getWaitingProblem();
-      if (waitingProblem) {
-        const waitingProblemArray = JSON.parse(waitingProblem);
-        setCountWaitingProblem(waitingProblemArray.length);
-      }
-    };
-
-    findCountWaitingProblem();
-  });
-  // console.log(waitingProblem);
-  // console.log(countWaitingProblem);
-
-  useEffect(() => {
-    setCountAllProblem(
-      countWaitingProblem + countInProgressProblem + countDoneProblem
-    );
-  }, [countWaitingProblem, countInProgressProblem, countDoneProblem]);
 
   return (
     <ScrollView style={{ backgroundColor: "white" }}>
@@ -167,8 +124,7 @@ export default function Home({ navigation }) {
                   fontWeight: "bold",
                 }}
               >
-                {countWaitingProblem}(
-                {(countWaitingProblem / countAllProblem) * 100}%)
+                Test(100%)
               </Text>
             </View>
             <View
@@ -214,8 +170,7 @@ export default function Home({ navigation }) {
                   fontWeight: "bold",
                 }}
               >
-                {countInProgressProblem}(
-                {(countInProgressProblem / countAllProblem) * 100}%)
+                Test(100%)
               </Text>
             </View>
             <View
@@ -261,8 +216,7 @@ export default function Home({ navigation }) {
                   fontWeight: "bold",
                 }}
               >
-                {countDoneProblem}({(countDoneProblem / countAllProblem) * 100}
-                %)
+                Test(100%)
               </Text>
             </View>
             <View
