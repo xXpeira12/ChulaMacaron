@@ -11,12 +11,18 @@ export default function Detail({ route }) {
   };
   return (
     <ScrollView style={{ backgroundColor:'white',padding:50, flex:1}}>
-    <Text style={{ fontWeight: 'bold', fontSize: 40 ,paddingBottom:20,color:'#E26199' }}>{item.header}</Text>
+    <Text style={{ fontWeight: 'bold', fontSize: 40 ,paddingBottom:20,color:'#E26199' }}>รายละเอียดปัญหา: </Text>
     <View style={{flexDirection:'column' ,borderWidth:2, borderColor:'#E26199',borderRadius:15,padding:10}}>
-        <Image source={item.picture} style={{ width: '100%',height:250, borderRadius: 8.6 }} />
+        <Image source={item.image} style={{ width: '100%',height:250, borderRadius: 8.6 }} />
         <View style={{}}>
-        <Text style={{ fontSize: 30, fontWeight: 'bold', paddingTop:15,color:'#E26199' }}>{item.location}</Text>
-        <Text style={{ fontSize: 20 ,color:'#E26199' ,paddingBottom:15}}>{item.description}</Text>
+        <Text style={{ fontWeight: 'bold', fontSize: 40 ,paddingBottom:20,color:'#E26199' }}>{item.rootProblem}</Text>
+        <Text style={{ fontWeight: 'bold', fontSize: 40 ,paddingBottom:20,color:'#E26199' }}>{item.detailProblem}</Text>
+        <Text style={{ fontWeight: 'thin', fontSize: 40 ,paddingBottom:20,color:'#E26199' }}>{item.detail}</Text>
+
+        <Text style={{ fontWeight: 'thin', fontSize: 40 ,paddingBottom:20,color:'gray' }}>{item.location.latitude}</Text>
+        <Text style={{ fontWeight: 'thin', fontSize: 40 ,paddingBottom:20,color:'gray' }}>{item.location.longitude}</Text>
+
+        <Text style={{ fontWeight: 'bold', fontSize: 40 ,paddingBottom:20,color:'gray' }}>{item.status}</Text>
 
 
         <View style={{height: screenHeight *0.25, backgroundColor:'#E26199', borderRadius:9, alignItems:'center',justifyContent:'center',marginBottom:30}}>

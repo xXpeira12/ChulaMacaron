@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, ScrollView, Button } from 'react-native';
 import Picker from 'react-native-picker-select';
 import { launchImageLibrary } from 'react-native-image-picker';
-import DateComponent from './Date';
+// import DateComponent from './Date';
 
 export default function report() {
   const [selectedValue, setSelectedValue] = useState(null);
@@ -98,9 +98,9 @@ export default function report() {
     <View style={{padding:50}}>
 
     <Text style={{ marginHorizontal: 5,marginBottom:10, fontSize: 35, fontFamily: 'chulaBold', color:'#E26199' }}>รายงานปัญหา:</Text>
-      <View style={{ }}>
+      {/* <View style={{ }}>
         <DateComponent />
-      </View>
+      </View> */}
 
       <View style={{marginTop:10, marginBottom:10}}>
         <Text style={{ marginHorizontal: 5, fontSize: 20, fontFamily: 'chulaReg' }}>เลือกปัญหา:</Text>
