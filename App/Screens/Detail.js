@@ -2,14 +2,38 @@ import React, { useRef, useState, useEffect } from 'react';
 import { View, Text, Image, ScrollView ,Dimensions, TouchableOpacity} from 'react-native';
 import Macaron from '../../assets/img/logo.png';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const screenHeight = Dimensions.get('window').height;
+
+const statuses = ['waiting', 'inProgress', 'done'];
 
 export default function Detail({ route }) {
   const { item } = route.params;
   const mapRef = useRef(null);
 
-  const handlePress = () => {
+  const handlePress = async () => {
+    const currentIndex = statuses.indexOf(item.status);
+    const nextIndex = (currentIndex + 1) % statuses.length;
+    const nextStatus = statuses[nextIndex];
+    const updatedItem = { ...item, status: nextStatus };
+
+    try {
+      const allProblemString = await AsyncStorage.getItem("allProblem");
+      if (allProblemString !== null) {
+        const allProblemArray = JSON.parse(allProblemString);
+        const updatedProblemArray = allProblemArray.map((problem) =>
+          problem.id === updatedItem.id ? updatedItem : problem
+        );
+        await AsyncStorage.setItem(
+          "allProblem",
+          JSON.stringify(updatedProblemArray)
+        );
+      }
+    } catch (error) {
+      console.error("Error updating AsyncStorage:", error);
+    }
+
     console.log('Button pressed!');
   };
 
@@ -27,6 +51,15 @@ export default function Detail({ route }) {
   useEffect(() => {
     moveCameraToInitialRegion();
   }, []);
+
+  let text;
+  if(item.status == 'waiting'){
+    text = 'รอดำเนินการ'
+  } else if(item.status == 'inProgress'){
+    text = 'กำลังดำเนินการ'
+  } else {
+    text = 'เสร็จสิ้น'
+  }
 
   return (
     <ScrollView style={{ backgroundColor:'white',padding:50, flex:1}}>
@@ -64,8 +97,9 @@ export default function Detail({ route }) {
         <TouchableOpacity 
   style={{height: 100, backgroundColor:'#E26199', borderRadius:9, alignItems:'center',justifyContent:'center'}}
   onPress={handlePress}
+  disabled={item.status === 'done'}
 >
-  <Text style={{fontSize:30, fontWeight:'bold', color:'white'}}>เริ่มดำเนินการ</Text>
+  <Text style={{fontSize:30, fontWeight:'bold', color:'white'}}>{text}</Text>
 </TouchableOpacity>
         </View>
   
