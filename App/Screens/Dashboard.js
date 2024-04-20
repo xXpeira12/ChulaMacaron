@@ -17,31 +17,21 @@ export default function Home({ navigation }) {
     <ScrollView style={{backgroundColor:'white'}}>
     <View style={{backgroundColor:'white', padding:50}}>
      
-    <Text style={{fontSize:30, textAlign:'center' , fontWeight:'bold' , paddingTop:15, color:'#E26199'}}>CHULA MACARON</Text>
-    <Text style={{fontSize:16, textAlign:'center', fontWeight:'bold', color:'#E26199'}}>make Nisit's life better</Text>
+  
 
     <View style={{flexDirection: screenWidth > 769 ? 'row' : 'column'}}>
-    <View style={{width: screenWidth > 769 ? '50%' : '100%',}}>
-    <Text style= {{paddingTop:20, color:'#E26199'}}>You can report any problems around Chulalongkorn University.</Text>
+    <View style={{width: screenWidth > 769 ? '100%' : '100%',}}>
 
-    <View style= {{paddingTop:20}}>
-      <Text style= {{fontWeight:'bold' , color:'#E26199' ,fontSize:25}}>แพลตฟอร์ม</Text>
-      <Text style= {{fontWeight:'bold' , color:'#E26199' ,fontSize:25, paddingBottom:10}}>แจ้งและจัดการปัญหาในจุฬา</Text>
+    <View style= {{paddingVertical:20}}>
+      <Text style= {{fontWeight:'bold' , color:'#E26199' ,fontSize:25}}>รายงานทั้งหมด</Text>
     </View>
 
-    <TouchableOpacity onPress={() => {}} style={{ backgroundColor: '#E26199', padding: 20, alignItems: 'center',  borderRadius: 10 ,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-    width: screenWidth > 769 ? '40%' : '100%',
-  }}>
-    <Text style={{ color: 'white' }}>แจ้งปัญหาได้ที่นี่ (Click Here)</Text>
-    </TouchableOpacity>
+    <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+
+    <TouchableOpacity onPress={() => {}}  style={{backgroundColor:'white', borderColor:'#E26199' , width:'47.5%', height:40, borderWidth:2, borderRadius:9 , paddingRight:'5%'}}></TouchableOpacity>
+  <TouchableOpacity  onPress={() => {}}style={{backgroundColor:'white', borderColor:'#E26199' , width:'47.5%', height:40, borderWidth:2, borderRadius:9}}></TouchableOpacity>
+
+</View>
     </View>
 
     <View style={{flexDirection: screenWidth > 769 ? 'column':'column' , paddingTop:20 , width: screenWidth > 769 ? '50%' : '100%'}}>
