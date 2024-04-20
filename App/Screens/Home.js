@@ -1,7 +1,7 @@
 import { View, Text , Dimensions , Button,  TouchableOpacity ,ScrollView , Image} from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
-import Macaron from '../../assets/img/logo.png'; // replace with your image file path
+import Macaron from '../../assets/img/logo.png';
 
 const screenWidth = Dimensions.get('window').width;
 
