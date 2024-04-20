@@ -121,7 +121,7 @@ export default function Home({ navigation }) {
       <Text style= {{color:'#E26199' ,fontSize:25, paddingBottom:10}}>แจ้งและจัดการปัญหาในจุฬา</Text>
     </View>
 
-    <TouchableOpacity onPress={() => {}} style={{ backgroundColor: '#E26199', padding: 20, alignItems: 'center',  borderRadius: 10 ,
+    <TouchableOpacity onPress={() => {navigation.navigate('ReportScreen')}} style={{ backgroundColor: '#E26199', padding: 20, alignItems: 'center',  borderRadius: 10 ,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
