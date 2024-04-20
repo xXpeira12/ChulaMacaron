@@ -1,6 +1,13 @@
-import { View, Text, Dimensions, TouchableOpacity, ScrollView, Image } from "react-native";
+import {
+  View,
+  Text,
+  Dimensions,
+  TouchableOpacity,
+  ScrollView,
+  Image,
+} from "react-native";
 import React, { useLayoutEffect, useState, useEffect } from "react";
-import CustomCallout from '../Components/CustomCallout';
+import CustomCallout from "../Components/CustomCallout";
 import Red from "../../assets/img/placeholder (0).png";
 import Yellow from "../../assets/img/placeholder (1).png";
 import Green from "../../assets/img/placeholder (2).png";
@@ -8,6 +15,7 @@ import Green from "../../assets/img/placeholder (2).png";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
 import Macaron from "../../assets/img/logo.png";
+import icon from "../../assets/icon.png";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const screenWidth = Dimensions.get("window").width;
@@ -104,24 +112,45 @@ export default function Home({ navigation }) {
   };
 
   return (
-    <ScrollView style={{backgroundColor:'white'}}>
-    <View style={{backgroundColor:'white', padding:50}}>
-     
+    <ScrollView style={{ backgroundColor: "white" }}>
+      <View style={{ backgroundColor: "white", padding: 50 }}>
+        <Text
+          style={{
+            fontSize: 30,
+            textAlign: "center",
+            paddingTop: 20,
+            color: "#E26199",
+          }}
+        >
+          CHULA MACARON
+        </Text>
+        <Text style={{ fontSize: 16, textAlign: "center", color: "#E26199" }}>
+          make Nisits' lives better
+        </Text>
 
-    <Image source={Macaron} style={{width:'100%', resizeMode:'center'}}></Image>
-    <Text style={{fontSize:30, textAlign:'center' , paddingTop:0, color:'#E26199'}}>CHULA MACARON</Text>
-    <Text style={{fontSize:16, textAlign:'center', color:'#E26199'}}>make Nisits' lives better</Text>
+        <View style={{ flexDirection: screenWidth > 769 ? "row" : "column" }}>
+          <View style={{ width: screenWidth > 769 ? "50%" : "100%" }}>
+            {/* <Text style= {{paddingTop:20, color:'#E26199', fontFamily: 'chulaBold'}}>You can report any problems around Chulalongkorn University.</Text> */}
 
-    <View style={{flexDirection: screenWidth > 769 ? 'row' : 'column'}}>
-    <View style={{width: screenWidth > 769 ? '50%' : '100%',}}>
-    {/* <Text style= {{paddingTop:20, color:'#E26199', fontFamily: 'chulaBold'}}>You can report any problems around Chulalongkorn University.</Text> */}
+            <View style={{ paddingTop: 20 }}>
+              <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <Image
+                  source={icon}
+                  style={{ width: 200, height: 200, resizeMode: 'cover' }}
+                />
+              </View>
 
-    <View style= {{paddingTop:20}}>
-      <Text style= {{color:'#E26199' ,fontSize:25}}>แพลตฟอร์ม</Text>
-      <Text style= {{color:'#E26199' ,fontSize:25, paddingBottom:10}}>แจ้งและจัดการปัญหาในจุฬา</Text>
-    </View>
+              <Text style={{ color: "#E26199", fontSize: 25, paddingTop:15 }}>แพลตฟอร์ม</Text>
 
-    <TouchableOpacity onPress={() => {navigation.navigate('ReportScreen')}} style={{ backgroundColor: '#E26199', padding: 20, alignItems: 'center',  borderRadius: 10 ,
+              <Text
+                style={{ color: "#E26199", fontSize: 25, paddingBottom: 10 }}
+              >
+                แจ้งและจัดการปัญหาในจุฬา
+              </Text>
+
+            </View>
+
+    {/* <TouchableOpacity onPress={() => {}} style={{ backgroundColor: '#E26199', padding: 20, alignItems: 'center',  borderRadius: 10 ,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -132,8 +161,8 @@ export default function Home({ navigation }) {
     elevation: 5,
     width: screenWidth > 769 ? '40%' : '100%',
   }}>
-    <Text style={{ color: 'white', fontSize: 18 }}>แจ้งปัญหาได้ที่นี่ (Click Here)</Text>
-    </TouchableOpacity>
+    <Text style={{ color: 'white', fontSize: 18 }}>แจ้งปัญหากดที่ปุ่ม Report</Text>
+    </TouchableOpacity> */}
     </View>
 
           <View
@@ -151,7 +180,7 @@ export default function Home({ navigation }) {
                 paddingBottom: 20,
               }}
             >
-              OverView
+              Overview
             </Text>
 
             <View
@@ -203,7 +232,10 @@ export default function Home({ navigation }) {
                     }
                     return (
                       <Marker key={index} coordinate={problem.location}>
-                        <Image source={markerImage} style={{ width: width, height: height }} />
+                        <Image
+                          source={markerImage}
+                          style={{ width: width, height: height }}
+                        />
                         <CustomCallout marker={problem} />
                       </Marker>
                     );
@@ -356,6 +388,7 @@ export default function Home({ navigation }) {
             ></View>
           </View>
         </View>
+      
 
         <View
           style={{
@@ -402,6 +435,10 @@ export default function Home({ navigation }) {
             }}
           ></View>
         </View>
+        <Image
+          source={Macaron}
+          style={{ width: "100%", resizeMode: "center" }}
+        ></Image>
       </View>
     </ScrollView>
   );

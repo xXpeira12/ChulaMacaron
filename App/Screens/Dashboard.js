@@ -195,18 +195,26 @@ export default function Dashboard({ navigation }) {
 
             <View style={{paddingLeft:15, flex: 1, justifyContent: 'space-between'}}>
 
-              <View>
-                <Text style={{fontWeight: 'bold', fontSize: 20}}>{item.rootProblem}</Text>
-                <Text style={{fontSize: 20 , fontWeight:'bold'}}>{item.detailProblem}</Text>
-                <Text style={{fontSize: 16}}>{item.Faculty}</Text>
+              <View style={{flexDirection:'row'}}>
+
+                <View style = {{width:'80%'}}>
+                <Text style={{fontWeight: 'bold', fontSize: 20, color:'#E26199'}}>{item.rootProblem}</Text>
+                <Text style={{fontSize: 16 , fontWeight:'bold', color:'#E26199'}}>{item.detailProblem}</Text>
+                <Text style={{fontSize: 12 , fontWeight:'bold', color:'#E26199', paddingTop:10}}>{item.Faculty}</Text>
+                </View>
+
+                <View>
+                <View style={{backgroundColor: StatusWithColor({status: item.status}), padding: 5, borderRadius: 15, width: 30, height: 30}}></View>
+                </View>
+
+               
 
                 {/* // status color */}
                 {/* <Text style={{fontSize: 16}}>{item.status}</Text> */}
-                <View style={{backgroundColor: StatusWithColor({status: item.status}), padding: 5, borderRadius: 5}}>
-                </View>
+              
 
               </View>
-
+              <Text style={{fontSize: 16}}>{item.faculty}</Text>
               <TouchableOpacity onPress={() => navigation.navigate('Detail', {item: item})}  style={{backgroundColor:'#E26199', width:'100%', height:40,  borderRadius:9 , paddingRight:'5%', alignItems:'center', justifyContent:'center'}}>
                 <Text style={{textAlign:'center',fontWeight:'bold' , color:'white'}}>See Detail</Text>
               </TouchableOpacity>
