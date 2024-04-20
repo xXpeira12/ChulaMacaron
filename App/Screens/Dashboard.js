@@ -1,10 +1,11 @@
 import { View, Text , Dimensions , Button,  TouchableOpacity ,ScrollView, Image} from 'react-native'
-import React, { useLayoutEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 import Macaron from '../../assets/img/logo.png';
 import Detail from './Detail'; 
 import { useNavigation } from '@react-navigation/native';
 import Picker from 'react-native-picker-select';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const screenWidth = Dimensions.get('window').width;
@@ -139,6 +140,21 @@ const StatusWithColor = ({ status }) => {
 };
 
 export default function Dashboard({ navigation }) {
+  
+  const [reportArray, setReportArray] = useState([]);
+  useEffect(() => {
+    const getAllProblem = async () => {
+      try {
+        const existingReport = await AsyncStorage.getItem("allProblem");
+        if(existingReport) {
+          setReportArray(JSON.parse(existingReport));
+        }
+      } catch(error) {
+        console.log("Error storing array:", error);
+      }
+    };
+    getAllProblem();
+  }, []);
 
   useLayoutEffect(() => {
     navigation.setOptions({ headerShown: false });
@@ -146,7 +162,7 @@ export default function Dashboard({ navigation }) {
 
   const [selectFaculty, setSelectFaculty] = useState(null);
   const [selectCurrentStatus, setCurrentStatus] = useState(null);
-  const filteredElements = mockData.filter(element => 
+  const filteredElements = reportArray.filter(element => 
     (!selectFaculty || element.Faculty === selectFaculty) && 
     (!selectCurrentStatus || element.status === selectCurrentStatus)
   );
