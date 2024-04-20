@@ -10,6 +10,7 @@ import * as SplashScreen from 'expo-splash-screen';
 export default function App() {
   const [fontsLoaded] = useFonts({
     'chulaReg' : require('./assets/fonts/CHULALONGKORNReg.otf'),
+    'chulaBold' : require('./assets/fonts/CHULALONGKORNBold.otf'),
   });
 
   // const onLayoutRootView = useCallback(async () => {
