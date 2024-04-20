@@ -1,4 +1,4 @@
-import { View, Text, Dimensions, StyleSheet } from 'react-native'
+import { View, Dimensions, StyleSheet } from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import Report from '../Components/Report/report'
 
@@ -10,7 +10,7 @@ export default function ReportScreen({ navigation }) {
   }, [navigation]);
 
   return (
-    <View>
+    <View style={{alignItems:'center', padding: 50}}>
       <Report/>
     </View>
   )

@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, ScrollView, Button } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, ScrollView, Button, Dimensions } from 'react-native';
 import Picker from 'react-native-picker-select';
 import { launchImageLibrary } from 'react-native-image-picker';
 import DateComponent from './Date';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps'
+import * as Location from "expo-location";
 
 export default function report() {
   const [selectedValue, setSelectedValue] = useState(null);
@@ -11,6 +13,42 @@ export default function report() {
   const [inputText, setInputText] = useState('');
   const [selectFaculty, setSelectFaculty] = useState(null);
   const [image, setImage] = useState(null);
+  const [initialRegion, setInitialRegion] = useState(null);
+  
+  useEffect(() => {
+    const getLocation = async () => {
+      try {
+        let { status } = await Location.requestForegroundPermissionsAsync();
+        
+        if (status !== "granted") {
+          setLocationError("Location permission denied");
+          return;
+        }
+  
+        let location = await Location.getCurrentPositionAsync({});
+
+        setInitialRegion({
+          latitude: location.coords.latitude,
+          longitude: location.coords.longitude,
+          latitudeDelta: 0.001,
+          longitudeDelta: 0.001
+        });
+      } catch(error) {
+        console.error("Error requesting location permission:", error);
+      }
+    };
+
+    getLocation();
+  }, []);
+
+  const handleRegionChange = (region) => {
+    const { latitude, longitude } = region;
+    const newCoordinate = {
+      latitude,
+      longitude
+    };
+    setInitialRegion(newCoordinate);
+  };
 
   const placeholder = {
     label: 'Select an option...',
@@ -153,12 +191,25 @@ export default function report() {
       <View style={{marginTop:10, marginBottom:10}}>
         <Text style={{ marginHorizontal: 5, fontSize: 20, fontFamily: 'chulaReg' }}>ปักหมุดบนแผนที่:</Text>
         <View style={{ borderWidth: 2, borderRadius: 10, borderColor: '#E26199', margin: 5, padding: 10 }}>
-          {/* <Picker
-            placeholder={placeholder}
-            items={faculties}
-            onValueChange={(value) => setSelectFaculty(value)}
-            value={selectFaculty}
-          /> */}
+          <MapView 
+            style={{
+              width: Dimensions.get('screen').width*0.89,
+              height: Dimensions.get('screen').height*0.23,
+              borderRadius: 20
+            }}
+            provider={PROVIDER_GOOGLE}
+            showsUserLocation={true}
+            showsMyLocationButton={true}
+            initialRegion={initialRegion}
+            onRegionChange={handleRegionChange}>
+          
+            <Marker
+              coordinate={initialRegion}
+              anchor={{ x: 0.5, y: 0.9 }}
+              style={{ zIndex: 999 }}>
+            </Marker>
+
+          </MapView>
         </View>
       </View>
 
