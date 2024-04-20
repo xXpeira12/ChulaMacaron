@@ -1,15 +1,8 @@
-import React, { useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  ScrollView,
-  Button,
-  Dimensions,
-} from "react-native";
-import Picker from "react-native-picker-select";
-import { launchImageLibrary } from "react-native-image-picker";
-import DateComponent from "./Date";
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, ScrollView, Button, Dimensions } from 'react-native';
+import Picker from 'react-native-picker-select';
+import { launchImageLibrary } from 'react-native-image-picker';
+// import DateComponent from './Date';
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -90,78 +83,21 @@ export default function report() {
   ];
 
   const options = [
-    { label: "ถนน", value: "ถนน", list: ["ถนนไม่เรียบ", "ถนนลื่น"] },
-    {
-      label: "ความสะอาด",
-      value: "ความสะอาด",
-      list: ["พื้นเปียก", "ไม่มีกระดาษทิชชู่", "สถานที่สกปรก"],
-    },
-    {
-      label: "การจราจร",
-      value: "การจราจร",
-      list: ["มีสิ่งกีดขวาง", "ไฟจราจรชำรุด"],
-    },
-    { label: "ไฟฟ้า", value: "ไฟฟ้า", list: ["ไฟดับ", "ไฟกระพริบ", "ไฟตก"] },
-    {
-      label: "น้ำท่วม",
-      value: "น้ำท่วม",
-      list: ["ถนนท่วมน้ำ", "บริเวณรอบๆ ถนนท่วมน้ำ"],
-    },
-    {
-      label: "ต้นไม้",
-      value: "ต้นไม้",
-      list: [
-        "ต้นไม้ตาย",
-        "กิ่งไม้หัก",
-        "กิ่งไม้บดบังทัศนวิสัย",
-        "กิ่งไม้พันสายไฟ",
-      ],
-    },
-    {
-      label: "ทางเท้า",
-      value: "ทางเท้า",
-      list: ["ทางเท้าเสื่อมโทรม", "อุปสร้างบนทางเท้าเสียหาย"],
-    },
-    {
-      label: "เสียงรบกวน",
-      value: "เสียงรบกวน",
-      list: [
-        "เสียงรบกวนจากการจราจร",
-        "เสียงรบกวนจากอุปกรณ์ชำรุด",
-        "เสียงรบกวนจากกิจกรรมโดยรอบ",
-      ],
-    },
-    {
-      label: "อุปกรณ์ชำรุด",
-      value: "อุปกรณ์ชำรุด",
-      list: ["ไฟจราจรชำรุด", "สัญญาณไฟจราจรเสีย"],
-    },
-    {
-      label: "สายสื่อสาร",
-      value: "สายสื่อสาร",
-      list: ["สายสื่อสารที่ชำรุด", "สายสื่อสารตก", "สายสื่อสารขาด"],
-    },
-    {
-      label: "ฝาท่อระบายน้ำ",
-      value: "ฝาท่อระบายน้ำ",
-      list: ["ฝาท่อระบายน้ำชำรุด", "ฝาท่อระบายน้ำหาย"],
-    },
-    {
-      label: "กลิ่นควัน",
-      value: "กลิ่นควัน",
-      list: ["กลิ่นควันจากการเผาไหม้", "กลิ่นไม่พึงประสงค์จากบริเวณโดยรอบ"],
-    },
-    { label: "สัตว์", value: "สัตว์", list: ["สัตว์หลบหนีจากป่าเขา"] },
-    {
-      label: "น้ำประปา",
-      value: "น้ำประปา",
-      list: ["ปัญหาการจ่ายน้ำประปา", "ปัญหาคุณภาพน้ำประปา"],
-    },
-    {
-      label: "อื่น ๆ",
-      value: "อื่น ๆ",
-      list: ["ระบุรายละเอียดปัญหาในช่องถัดไป"],
-    },
+    { label: 'ถนน', value: 'ถนน', list: ['ถนนไม่เรียบ', 'ถนนลื่น', 'ถนนทรุดตัว', 'เส้นแบ่งช่องทางจราจรไม่ชัด', 'สีทางม้าลายไม่ชัด'] },
+    { label: 'ความสะอาด', value: 'ความสะอาด', list: ['พื้นเปียก', 'ไม่มีกระดาษทิชชู่', 'สถานที่สกปรก', 'ขยะรอบอาคาร'] },
+    { label: 'การจราจร', value: 'การจราจร', list: ['มีสิ่งกีดขวางทางจราจร', 'ไฟจราจรชำรุด'] },
+    { label: 'ไฟฟ้า', value: 'ไฟฟ้า', list: ['ไฟดับ', 'ไฟกระพริบ', 'ไฟตก', 'ไฟรั่ว'] },
+    { label: 'น้ำท่วม', value: 'น้ำท่วม', list: ['ถนนท่วมน้ำ', 'บริเวณรอบ ๆ ถนนท่วมน้ำ'] },
+    { label: 'ต้นไม้', value: 'ต้นไม้', list: ['ต้นไม้ตาย', 'กิ่งไม้หัก', 'กิ่งไม้บดบังทัศนวิสัย', 'กิ่งไม้พันสายไฟ', 'ต้นไม้กีดกั้นทางเดิน'] },
+    { label: 'ทางเท้า', value: 'ทางเท้า', list: ['ทางเท้าเสื่อมโทรม', 'มีสิ่งกีดขวางบนทางเท้า'] },
+    { label: 'เสียงรบกวน', value: 'เสียงรบกวน', list: ['เสียงรบกวนจากการจราจร', 'เสียงรบกวนจากอุปกรณ์ชำรุด', 'เสียงรบกวนจากกิจกรรมโดยรอบ'] },
+    { label: 'อุปกรณ์ชำรุด', value: 'อุปกรณ์ชำรุด', list: ['โพรเจกเตอร์ชำรุด', 'โทรทัศน์ชำรุด', 'เครื่องปรับอากาศชำรุด', 'รีโมทชำรุด', 'คอมพิวเตอร์ชำรุด', 'เก้าอี้ชำรุด', 'โต๊ะชำรุด'] },
+    { label: 'สายสื่อสาร', value: 'สายสื่อสาร', list: ['สายสื่อสารชำรุด', 'สายสื่อสารตก', 'สายสื่อสารขาด'] },
+    { label: 'ฝาท่อระบายน้ำ', value: 'ฝาท่อระบายน้ำ', list: ['ฝาท่อระบายน้ำชำรุด', 'ฝาท่อระบายน้ำหาย'] },
+    { label: 'กลิ่นควัน', value: 'กลิ่นควัน', list: ['กลิ่นควันจากการเผาไหม้', 'กลิ่นไม่พึงประสงค์จากบริเวณโดยรอบ'] },
+    { label: 'สัตว์', value: 'สัตว์', list: ['สุนัข', 'งู', 'หนู', 'นก'] },
+    { label: 'น้ำประปา', value: 'น้ำประปา', list: ['น้ำรั่ว', 'น้ำไม่ไหล', 'น้ำไหลเบา', 'มีสิ่งปนเปื้อนในน้ำ', 'น้ำมีกลิ่น' ] },
+    { label: 'อื่น ๆ', value: 'อื่น ๆ', list: ['ระบุรายละเอียดปัญหาในช่องถัดไป'] }
   ];
 
   const handleValueChange = (value) => {
@@ -255,21 +191,12 @@ export default function report() {
 
   return (
     <ScrollView>
-      <View style={{ padding: 50 }}>
-        <Text
-          style={{
-            marginHorizontal: 5,
-            marginBottom: 10,
-            fontSize: 35,
-            fontFamily: "chulaBold",
-            color: "#E26199",
-          }}
-        >
-          รายงานปัญหา:
-        </Text>
-        <View style={{}}>
-          <DateComponent />
-        </View>
+    <View style={{padding:50}}>
+
+    <Text style={{ marginHorizontal: 5,marginBottom:10, fontSize: 35, fontFamily: 'chulaBold', color:'#E26199' }}>รายงานปัญหา:</Text>
+      {/* <View style={{ }}>
+        <DateComponent />
+      </View> */}
 
         <View style={{ marginTop: 10, marginBottom: 10 }}>
           <Text

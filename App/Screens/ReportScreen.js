@@ -10,7 +10,7 @@ export default function ReportScreen({ navigation }) {
   }, [navigation]);
 
   return (
-    <View>
+    <View style={{backgroundColor:'white'}}>
       <Report/>
     </View>
   )
