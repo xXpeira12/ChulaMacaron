@@ -68,9 +68,9 @@ export default function Detail({ route }) {
         <Image source={item.image} style={{ width: '100%',height:250, borderRadius: 8.6 }} />
         <View style={{}}>
 
-        <Text style={{ fontWeight: 'bold', fontSize: 20 ,paddingTop:20,color:'#E26199', fontFamily: 'chulaBold' }}>{item.rootProblem}</Text>
-        <Text style={{ fontWeight: 'bold', fontSize: 20 ,paddingTop:20,color:'#E26199', fontFamily: 'chulaBold' }}>{item.detailProblem}</Text>
-        <Text style={{ fontWeight: 'thin', fontSize: 20 ,paddingTop:20,color:'#E26199', fontFamily: 'chulaReg' }}>{item.detail}</Text>
+        <Text style={{ fontWeight: 'bold', fontSize: 25 ,paddingTop:20,color:'#E26199', fontFamily: 'chulaBold' }}>{item.rootProblem}</Text>
+        <Text style={{ fontWeight: 'bold', fontSize: 20 ,paddingTop:0,color:'#E26199', fontFamily: 'chulaBold' }}>{item.detailProblem}</Text>
+        <Text style={{ fontWeight: 'thin', fontSize: 20 ,paddingTop:10,color:'#E26199', fontFamily: 'chulaReg' }}>{item.detail}</Text>
 
 {/* 
         <Text style={{ fontWeight: 'thin', fontSize: 20 ,paddingVertical:20,color:'gray' }}>{item.location.latitude}</Text>
