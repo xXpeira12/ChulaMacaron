@@ -33,7 +33,12 @@
     "react-native-tailwindcss": "^1.1.11",
     "react-native-web": "~0.19.6",
     "react-navigation": "^5.0.0",
-    "tailwind-rn": "^4.2.0"
+
+    "tailwind-rn": "^4.2.0",
+    "expo-font": "~11.10.3",
+    "expo-splash-screen": "~0.26.4",
+    "react-native-maps": "1.10.0"
+
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
