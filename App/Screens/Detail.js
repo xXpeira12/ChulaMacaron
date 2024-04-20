@@ -16,7 +16,7 @@ const mockData = [
   // Add more items as needed
 ];
 
-export default function Home({ navigation }) {
+export default function Detail({ navigation }) {
   useLayoutEffect(() => {
     navigation.setOptions({ headerShown: false });
   }, [navigation]);
