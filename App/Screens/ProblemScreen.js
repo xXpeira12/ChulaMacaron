@@ -6,7 +6,7 @@ const { height } = Dimensions.get('window')
 
 export default function ProblemScreen() {
   return (
-    <View>
+    <View style={{backgroundColor:'white'}}>
       <Problem/>
     </View>
   )
