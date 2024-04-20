@@ -1,11 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, ScrollView, Button, Dimensions } from 'react-native';
-import Picker from 'react-native-picker-select';
-import { launchImageLibrary } from 'react-native-image-picker';
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  ScrollView,
+  Button,
+  Dimensions,
+} from "react-native";
+import Picker from "react-native-picker-select";
 // import DateComponent from './Date';
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as ImagePicker from "expo-image-picker";
+import { useNavigation } from "@react-navigation/native";
 
 export default function report() {
   const [selectedValue, setSelectedValue] = useState(null);
@@ -13,9 +21,10 @@ export default function report() {
   const [selectedListItem, setSelectedListItem] = useState(null);
   const [inputText, setInputText] = useState("");
   const [selectFaculty, setSelectFaculty] = useState(null);
-  const [image, setImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
   const [initialRegion, setInitialRegion] = useState(null);
-  const [bgColor, setBgColor] = useState('#E26199');
+  const [bgColor, setBgColor] = useState("#E26199");
+  const navigation = useNavigation();
 
   useEffect(() => {
     const getLocation = async () => {
@@ -88,21 +97,107 @@ export default function report() {
   ];
 
   const options = [
-    { label: 'ถนน', value: 'ถนน', list: ['ถนนไม่เรียบ', 'ถนนลื่น', 'ถนนทรุดตัว', 'เส้นแบ่งช่องทางจราจรไม่ชัด', 'สีทางม้าลายไม่ชัด'] },
-    { label: 'ความสะอาด', value: 'ความสะอาด', list: ['พื้นเปียก', 'ไม่มีกระดาษทิชชู่', 'สถานที่สกปรก', 'ขยะรอบอาคาร'] },
-    { label: 'การจราจร', value: 'การจราจร', list: ['มีสิ่งกีดขวางทางจราจร', 'ไฟจราจรชำรุด'] },
-    { label: 'ไฟฟ้า', value: 'ไฟฟ้า', list: ['ไฟดับ', 'ไฟกระพริบ', 'ไฟตก', 'ไฟรั่ว'] },
-    { label: 'น้ำท่วม', value: 'น้ำท่วม', list: ['ถนนท่วมน้ำ', 'บริเวณรอบ ๆ ถนนท่วมน้ำ'] },
-    { label: 'ต้นไม้', value: 'ต้นไม้', list: ['ต้นไม้ตาย', 'กิ่งไม้หัก', 'กิ่งไม้บดบังทัศนวิสัย', 'กิ่งไม้พันสายไฟ', 'ต้นไม้กีดกั้นทางเดิน'] },
-    { label: 'ทางเท้า', value: 'ทางเท้า', list: ['ทางเท้าเสื่อมโทรม', 'มีสิ่งกีดขวางบนทางเท้า'] },
-    { label: 'เสียงรบกวน', value: 'เสียงรบกวน', list: ['เสียงรบกวนจากการจราจร', 'เสียงรบกวนจากอุปกรณ์ชำรุด', 'เสียงรบกวนจากกิจกรรมโดยรอบ'] },
-    { label: 'อุปกรณ์ชำรุด', value: 'อุปกรณ์ชำรุด', list: ['โพรเจกเตอร์ชำรุด', 'โทรทัศน์ชำรุด', 'เครื่องปรับอากาศชำรุด', 'รีโมทชำรุด', 'คอมพิวเตอร์ชำรุด', 'เก้าอี้ชำรุด', 'โต๊ะชำรุด'] },
-    { label: 'สายสื่อสาร', value: 'สายสื่อสาร', list: ['สายสื่อสารชำรุด', 'สายสื่อสารตก', 'สายสื่อสารขาด'] },
-    { label: 'ฝาท่อระบายน้ำ', value: 'ฝาท่อระบายน้ำ', list: ['ฝาท่อระบายน้ำชำรุด', 'ฝาท่อระบายน้ำหาย'] },
-    { label: 'กลิ่นควัน', value: 'กลิ่นควัน', list: ['กลิ่นควันจากการเผาไหม้', 'กลิ่นไม่พึงประสงค์จากบริเวณโดยรอบ'] },
-    { label: 'สัตว์', value: 'สัตว์', list: ['สุนัข', 'งู', 'หนู', 'นก'] },
-    { label: 'น้ำประปา', value: 'น้ำประปา', list: ['น้ำรั่ว', 'น้ำไม่ไหล', 'น้ำไหลเบา', 'มีสิ่งปนเปื้อนในน้ำ', 'น้ำมีกลิ่น' ] },
-    { label: 'อื่น ๆ', value: 'อื่น ๆ', list: ['ระบุรายละเอียดปัญหาในช่องถัดไป'] }
+    {
+      label: "ถนน",
+      value: "ถนน",
+      list: [
+        "ถนนไม่เรียบ",
+        "ถนนลื่น",
+        "ถนนทรุดตัว",
+        "เส้นแบ่งช่องทางจราจรไม่ชัด",
+        "สีทางม้าลายไม่ชัด",
+      ],
+    },
+    {
+      label: "ความสะอาด",
+      value: "ความสะอาด",
+      list: ["พื้นเปียก", "ไม่มีกระดาษทิชชู่", "สถานที่สกปรก", "ขยะรอบอาคาร"],
+    },
+    {
+      label: "การจราจร",
+      value: "การจราจร",
+      list: ["มีสิ่งกีดขวางทางจราจร", "ไฟจราจรชำรุด"],
+    },
+    {
+      label: "ไฟฟ้า",
+      value: "ไฟฟ้า",
+      list: ["ไฟดับ", "ไฟกระพริบ", "ไฟตก", "ไฟรั่ว"],
+    },
+    {
+      label: "น้ำท่วม",
+      value: "น้ำท่วม",
+      list: ["ถนนท่วมน้ำ", "บริเวณรอบ ๆ ถนนท่วมน้ำ"],
+    },
+    {
+      label: "ต้นไม้",
+      value: "ต้นไม้",
+      list: [
+        "ต้นไม้ตาย",
+        "กิ่งไม้หัก",
+        "กิ่งไม้บดบังทัศนวิสัย",
+        "กิ่งไม้พันสายไฟ",
+        "ต้นไม้กีดกั้นทางเดิน",
+      ],
+    },
+    {
+      label: "ทางเท้า",
+      value: "ทางเท้า",
+      list: ["ทางเท้าเสื่อมโทรม", "มีสิ่งกีดขวางบนทางเท้า"],
+    },
+    {
+      label: "เสียงรบกวน",
+      value: "เสียงรบกวน",
+      list: [
+        "เสียงรบกวนจากการจราจร",
+        "เสียงรบกวนจากอุปกรณ์ชำรุด",
+        "เสียงรบกวนจากกิจกรรมโดยรอบ",
+      ],
+    },
+    {
+      label: "อุปกรณ์ชำรุด",
+      value: "อุปกรณ์ชำรุด",
+      list: [
+        "โพรเจกเตอร์ชำรุด",
+        "โทรทัศน์ชำรุด",
+        "เครื่องปรับอากาศชำรุด",
+        "รีโมทชำรุด",
+        "คอมพิวเตอร์ชำรุด",
+        "เก้าอี้ชำรุด",
+        "โต๊ะชำรุด",
+      ],
+    },
+    {
+      label: "สายสื่อสาร",
+      value: "สายสื่อสาร",
+      list: ["สายสื่อสารชำรุด", "สายสื่อสารตก", "สายสื่อสารขาด"],
+    },
+    {
+      label: "ฝาท่อระบายน้ำ",
+      value: "ฝาท่อระบายน้ำ",
+      list: ["ฝาท่อระบายน้ำชำรุด", "ฝาท่อระบายน้ำหาย"],
+    },
+    {
+      label: "กลิ่นควัน",
+      value: "กลิ่นควัน",
+      list: ["กลิ่นควันจากการเผาไหม้", "กลิ่นไม่พึงประสงค์จากบริเวณโดยรอบ"],
+    },
+    { label: "สัตว์", value: "สัตว์", list: ["สุนัข", "งู", "หนู", "นก"] },
+    {
+      label: "น้ำประปา",
+      value: "น้ำประปา",
+      list: [
+        "น้ำรั่ว",
+        "น้ำไม่ไหล",
+        "น้ำไหลเบา",
+        "มีสิ่งปนเปื้อนในน้ำ",
+        "น้ำมีกลิ่น",
+      ],
+    },
+    {
+      label: "อื่น ๆ",
+      value: "อื่น ๆ",
+      list: ["ระบุรายละเอียดปัญหาในช่องถัดไป"],
+    },
   ];
 
   const handleValueChange = (value) => {
@@ -115,29 +210,49 @@ export default function report() {
     }
   };
 
-  const selectImage = () => {
-    let options = {
-      storageOptions: {
-        skipBackup: true,
-        path: "images",
-      },
-    };
+  // const selectImage = () => {
+  //   let options = {
+  //     storageOptions: {
+  //       skipBackup: true,
+  //       path: "images",
+  //     },
+  //   };
 
-    launchImageLibrary(options, (response) => {
-      if (response.didCancel) {
-        console.log("User cancelled image picker");
-      } else if (response.error) {
-        console.log("ImagePicker Error: ", response.error);
-      } else {
-        const source = { uri: response.uri };
-        setImage(source);
-      }
+  //   launchImageLibrary(options, (response) => {
+  //     if (response.didCancel) {
+  //       console.log("User cancelled image picker");
+  //     } else if (response.error) {
+  //       console.log("ImagePicker Error: ", response.error);
+  //     } else {
+  //       const source = { uri: response.uri };
+  //       setImage(source);
+  //     }
+  //   });
+  // };
+
+  const launchImageLibrary = async () => {
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== "granted") {
+      alert("Sorry, we need media library permissions to select an image.");
+      return;
+    }
+
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
     });
+
+    if (!result.canceled && result.assets && result.assets.length > 0) {
+      console.log(result.assets[0].uri);
+      setSelectedImage(result.assets[0].uri);
+    }
   };
 
   const handleSubmit = async () => {
     // Handle the submit action here
-    setBgColor('#f5b7ce');
+    setBgColor("#f5b7ce");
 
     let newReport = {
       id: generateUniqueId(),
@@ -146,7 +261,7 @@ export default function report() {
       detail: inputText,
       Faculty: selectFaculty,
       location: initialRegion,
-      image: require('../../../assets/img/peko.jpg'),
+      image: require("../../../assets/img/peko.jpg"),
       status: "waiting",
     };
 
@@ -157,7 +272,7 @@ export default function report() {
       detail: inputText,
       Faculty: selectFaculty,
       location: initialRegion,
-      image: require('../../../assets/img/peko.jpg'),
+      image: require("../../../assets/img/peko.jpg"),
       status: "inProgress",
     };
 
@@ -168,7 +283,7 @@ export default function report() {
       detail: inputText,
       Faculty: selectFaculty,
       location: initialRegion,
-      image: require('../../../assets/img/peko.jpg'),
+      image: require("../../../assets/img/peko.jpg"),
       status: "done",
     };
 
@@ -194,6 +309,9 @@ export default function report() {
       await AsyncStorage.setItem("allProblem", JSON.stringify(reportArray));
       // await AsyncStorage.removeItem("allProblem");
       console.log("Object added to array and stored successfully");
+
+      // Navigate back to the home screen
+      navigation.navigate("Home");
     } catch (error) {
       console.log("Error storing array:", error);
     }
@@ -201,10 +319,19 @@ export default function report() {
 
   return (
     <ScrollView>
-    <View style={{padding:50}}>
-
-    <Text style={{ marginHorizontal: 5,marginBottom:10, fontSize: 30, fontFamily: 'chulaBold', color:'#E26199' }}>รายงานปัญหา:</Text>
-      {/* <View style={{ }}>
+      <View style={{ padding: 50 }}>
+        <Text
+          style={{
+            marginHorizontal: 5,
+            marginBottom: 10,
+            fontSize: 30,
+            fontFamily: "chulaBold",
+            color: "#E26199",
+          }}
+        >
+          รายงานปัญหา:
+        </Text>
+        {/* <View style={{ }}>
         <DateComponent />
       </View> */}
 
@@ -373,14 +500,25 @@ export default function report() {
           >
             ใส่รูปภาพ:
           </Text>
-          <Button
-            title="เลือกรูปภาพจากแกลเลอรี่"
-            onPress={selectImage}
-            color="#E26199"
-          />
-          {image && (
-            <Image style={{ width: 200, height: 200 }} source={image} />
+          {selectedImage !== null ? (
+            <Text style={{ textAlign: "center" }}>อัพโหลดรูปภาพเรียบร้อย</Text>
+          ) : (
+            <Button
+              title="เลือกรูปภาพจากแกลเลอรี่"
+              onPress={launchImageLibrary}
+              color="#E26199"
+            />
           )}
+          {/* // selectedImage && (
+          //   <Image
+          //     source={selectedImage}
+          //     style={{
+          //       width: 200,
+          //       height: 200,
+          //       margin: 10,
+          //     }}
+          //   />
+          // ) */}
         </View>
 
         <View
