@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "ChulaMacaron",
-    "slug": "ChulaMacaron",
+    "slug": "chulamacaron",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -11,7 +11,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -41,7 +43,7 @@
     ],
     "extra": {
       "eas": {
-        "projectId": "9ad4d33c-9985-45ee-8091-f6345462e62b"
+        "projectId": "d1391b8f-24c3-44ad-a67c-d8c05be9c81b"
       }
     },
     "owner": "jaitnipat"
