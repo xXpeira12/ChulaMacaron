@@ -1,7 +1,8 @@
-import { View, Text , Dimensions , Button,  TouchableOpacity ,ScrollView , Image} from 'react-native'
-import React, { useLayoutEffect } from 'react'
+import { View, Text , Dimensions ,  TouchableOpacity ,ScrollView , Image} from 'react-native'
+import React, { useLayoutEffect, useState, useEffect } from 'react'
 
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps'
+import * as Location from "expo-location";
 import Macaron from '../../assets/img/logo.png';
 
 
@@ -13,6 +14,42 @@ export default function Home({ navigation }) {
   useLayoutEffect(() => {
     navigation.setOptions({ headerShown: false });
   }, [navigation]);
+  const [initialRegion, setInitialRegion] = useState(null);
+  
+  useEffect(() => {
+    const getLocation = async () => {
+      try {
+        let { status } = await Location.requestForegroundPermissionsAsync();
+        
+        if (status !== "granted") {
+          setLocationError("Location permission denied");
+          return;
+        }
+  
+        let location = await Location.getCurrentPositionAsync({});
+
+        setInitialRegion({
+          latitude: location.coords.latitude,
+          longitude: location.coords.longitude,
+          latitudeDelta: 0.001,
+          longitudeDelta: 0.001
+        });
+      } catch(error) {
+        console.error("Error requesting location permission:", error);
+      }
+    };
+
+    getLocation();
+  }, []);
+
+  const handleRegionChange = (region) => {
+    const { latitude, longitude } = region;
+    const newCoordinate = {
+      latitude,
+      longitude
+    };
+    setInitialRegion(newCoordinate);
+  };
 
   return (
     <ScrollView style={{backgroundColor:'white'}}>
@@ -55,7 +92,20 @@ export default function Home({ navigation }) {
           flexDirection: 'row',
           backgroundColor: '#E26199',
           
-        }}></View>
+        }}>
+          <MapView 
+            style={{
+              width: '100%',
+              height: Dimensions.get('screen').height*0.23,
+              borderRadius: 10
+            }}
+            provider={PROVIDER_GOOGLE}
+            showsUserLocation={true}
+            showsMyLocationButton={true}
+            initialRegion={initialRegion}
+            onRegionChange={handleRegionChange}>
+          </MapView>
+      </View>
     </View>
 
     </View>
