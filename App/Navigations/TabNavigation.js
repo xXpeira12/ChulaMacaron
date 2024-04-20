@@ -31,7 +31,7 @@ export default function TabNavigation() {
         <Tab.Screen name="Report" component={ReportScreen} 
         options={{
           tabBarLabel: ({ focused }) => (
-            <Text style={{ color: focused ? '#E26199' : 'gray' }}>Home</Text>
+            <Text style={{ color: focused ? '#E26199' : 'gray' }}>Report</Text>
           ),
           tabBarIcon: ({ color, size }) => (
             <Octicons name="report" color='#E26199' size={size}/>
@@ -40,7 +40,7 @@ export default function TabNavigation() {
         <Tab.Screen name="Dashboard" component={Dashboard}
         options={{
           tabBarLabel: ({ focused }) => (
-            <Text style={{ color: focused ? '#E26199' : 'gray' }}>Home</Text>
+            <Text style={{ color: focused ? '#E26199' : 'gray' }}>Dashboard</Text>
           ),
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="space-dashboard" color='#E26199' size={size}/>
