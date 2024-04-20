@@ -159,7 +159,7 @@ export default function Dashboard({ navigation }) {
     <View style={{width: screenWidth > 769 ? '100%' : '100%',}}>
 
     <View style= {{paddingVertical:20}}>
-      <Text style= {{fontWeight:'bold' , color:'#E26199' ,fontSize:25}}>รายงานทั้งหมด</Text>
+      <Text style= {{fontWeight:'bold' , color:'#E26199' ,fontSize:30, fontFamily: 'chulaBold'}}>รายงานทั้งหมด:</Text>
     </View>
 
     {/* <View style={{flexDirection: 'row', justifyContent: 'space-between'}}> */}
@@ -198,9 +198,9 @@ export default function Dashboard({ navigation }) {
               <View style={{flexDirection:'row'}}>
 
                 <View style = {{width:'80%'}}>
-                <Text style={{fontWeight: 'bold', fontSize: 20, color:'#E26199'}}>{item.rootProblem}</Text>
-                <Text style={{fontSize: 16 , fontWeight:'bold', color:'#E26199'}}>{item.detailProblem}</Text>
-                <Text style={{fontSize: 12 , fontWeight:'bold', color:'#E26199', paddingTop:10}}>{item.Faculty}</Text>
+                <Text style={{fontWeight: 'bold', fontSize: 20, color:'#E26199', fontFamily: 'chulaBold'}}>{item.rootProblem}</Text>
+                <Text style={{fontSize: 16 , fontWeight:'bold', color:'#E26199', fontFamily: 'chulaBold'}}>{item.detailProblem}</Text>
+                <Text style={{fontSize: 12 , fontWeight:'bold', color:'#E26199', paddingTop:10, fontFamily: 'chulaReg'}}>{item.Faculty}</Text>
                 </View>
 
                 <View>
@@ -216,7 +216,7 @@ export default function Dashboard({ navigation }) {
               </View>
               <Text style={{fontSize: 16}}>{item.faculty}</Text>
               <TouchableOpacity onPress={() => navigation.navigate('Detail', {item: item})}  style={{backgroundColor:'#E26199', width:'100%', height:40,  borderRadius:9 , paddingRight:'5%', alignItems:'center', justifyContent:'center'}}>
-                <Text style={{textAlign:'center',fontWeight:'bold' , color:'white'}}>See Detail</Text>
+                <Text style={{textAlign:'center',fontWeight:'bold' , color:'white', fontFamily: 'chulaBold', fontSize:15}}>See Detail</Text>
               </TouchableOpacity>
 
             </View>

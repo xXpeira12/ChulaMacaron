@@ -195,7 +195,7 @@ export default function report() {
     <ScrollView>
     <View style={{padding:50}}>
 
-    <Text style={{ marginHorizontal: 5,marginBottom:10, fontSize: 35, fontFamily: 'chulaBold', color:'#E26199' }}>รายงานปัญหา:</Text>
+    <Text style={{ marginHorizontal: 5,marginBottom:10, fontSize: 30, fontFamily: 'chulaBold', color:'#E26199' }}>รายงานปัญหา:</Text>
       {/* <View style={{ }}>
         <DateComponent />
       </View> */}
