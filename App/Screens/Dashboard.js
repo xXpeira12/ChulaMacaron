@@ -2,6 +2,8 @@ import { View, Text , Dimensions , Button,  TouchableOpacity ,ScrollView, Image}
 import React, { useLayoutEffect } from 'react'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 import Macaron from '../../assets/img/logo.png';
+import Detail from './Detail'; 
+import { useNavigation } from '@react-navigation/native';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -16,7 +18,8 @@ const mockData = [
   // Add more items as needed
 ];
 
-export default function Home({ navigation }) {
+export default function Dashboard({ navigation }) {
+
   useLayoutEffect(() => {
     navigation.setOptions({ headerShown: false });
   }, [navigation]);
@@ -59,7 +62,7 @@ export default function Home({ navigation }) {
         <Text style={{fontSize: 20 , fontWeight:'bold'}}>{item.description}</Text>
         <Text style={{fontSize: 16}}>{item.location}</Text>
       </View>
-      <TouchableOpacity onPress={() => {}}  style={{backgroundColor:'#E26199', width:'100%', height:40,  borderRadius:9 , paddingRight:'5%', alignItems:'center', justifyContent:'center'}}>
+      <TouchableOpacity onPress={() => navigation.navigate('Detail')}  style={{backgroundColor:'#E26199', width:'100%', height:40,  borderRadius:9 , paddingRight:'5%', alignItems:'center', justifyContent:'center'}}>
         <Text style={{textAlign:'center',fontWeight:'bold' , color:'white'}}>See Detail</Text>
       </TouchableOpacity>
     </View>
