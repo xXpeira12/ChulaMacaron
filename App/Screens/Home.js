@@ -73,7 +73,7 @@ export default function Home({ navigation }) {
 
     <View style={{height:100, width:'100%', borderRadius:10, backgroundColor: '#FFDAAF',marginTop:20 , paddingBottom:10, flexDirection: 'row', justifyContent: 'space-between'}}>
       <View>
-        <Text style={{color:'white', padding:15, fontSize:20, fontFamily: 'chulaBold'}}>ดำเนินการ</Text>
+        <Text style={{color:'white', padding:15, fontSize:20, fontFamily: 'chulaBold'}}>กำลังดำเนินการ</Text>
         <Text style={{color:'white', paddingLeft:15, fontSize:20, fontFamily: 'chulaBold'}}>123(100%)</Text>
       </View>
       <View style={{backgroundColor:'black', height:80 , width:80, marginHorizontal:15, marginVertical:10, borderRadius:9}}></View>
