@@ -6,7 +6,7 @@ const { height } = Dimensions.get('window')
 
 export default function ProblemScreen() {
   return (
-    <View style={{backgroundColor:'white'}}>
+    <View style={{backgroundColor:'white',flex:1}}>
       <Problem/>
     </View>
   )
