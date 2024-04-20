@@ -11,9 +11,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
@@ -23,18 +21,29 @@
         "backgroundColor": "#ffffff",
         "package": "com.tubeguruji.findplace",
         "googleMapsApiKey": "AIzaSyCsmsPgK3m14Nj6HTiC2A_8B91zB7URSM4"
-      }
+      },
+      "permissions": [
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
       "expo-font",
-      ["expo-location",
-      {
-        "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
-      }
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
+        }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "9ad4d33c-9985-45ee-8091-f6345462e62b"
+      }
+    },
+    "owner": "jaitnipat"
   }
 }
