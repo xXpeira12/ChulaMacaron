@@ -34,7 +34,7 @@ export default function Problem() {
   return (
     <ScrollView>
       <View style={{padding:50}}>
-      <Text style={{ marginHorizontal: 5,marginBottom:10, fontSize: 35, fontFamily: 'chulaBold', color:'#E26199' }}>ปัญหาที่รับแจ้ง:</Text>
+      <Text style={{ marginHorizontal: 5,marginBottom:10, fontSize: 30, fontFamily: 'chulaBold', color:'#E26199' }}>ปัญหาที่รับแจ้ง:</Text>
 
       {/* <View style={{ borderWidth: 2, borderRadius: 10, borderColor: '#E26199', margin: 5, padding: 10 }}>
         <TextInput
@@ -52,7 +52,7 @@ export default function Problem() {
 
           {selectedProblemIndex === index && problem.list.map((list, index) => (
             <View key={index} style={{marginLeft:20}}>
-              <Text style={{fontFamily: 'chulaReg', fontSize:20, color:'',paddingTop:10}}>- {list}</Text>
+              <Text style={{fontFamily: 'chulaReg', fontSize:20, color:'gray',paddingTop:10}}>- {list}</Text>
             </View>
           ))}
         </View>

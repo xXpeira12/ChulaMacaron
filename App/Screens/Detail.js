@@ -30,20 +30,20 @@ export default function Detail({ route }) {
 
   return (
     <ScrollView style={{ backgroundColor:'white',padding:50, flex:1}}>
-    <Text style={{ fontWeight: 'bold', fontSize: 25 ,paddingVertical:20,color:'#E26199' }}>หัวข้อ {item.rootProblem}</Text>
+    <Text style={{ fontWeight: 'bold', fontSize: 30 ,paddingVertical:20,color:'#E26199', fontFamily: 'chulaBold' }}>รายละเอียด:</Text>
     <View style={{flexDirection:'column' ,borderWidth:2, borderColor:'#E26199',borderRadius:15,padding:10}}>
         <Image source={item.image} style={{ width: '100%',height:250, borderRadius: 8.6 }} />
         <View style={{}}>
-       
 
-        <Text style={{ fontWeight: 'bold', fontSize: 20 ,paddingTop:20,color:'#E26199' }}>{item.detailProblem}</Text>
-        <Text style={{ fontWeight: 'thin', fontSize: 20 ,paddingTop:20,color:'#E26199' }}>{item.detail}</Text>
+        <Text style={{ fontWeight: 'bold', fontSize: 20 ,paddingTop:20,color:'#E26199', fontFamily: 'chulaBold' }}>{item.rootProblem}</Text>
+        <Text style={{ fontWeight: 'bold', fontSize: 20 ,paddingTop:20,color:'#E26199', fontFamily: 'chulaBold' }}>{item.detailProblem}</Text>
+        <Text style={{ fontWeight: 'thin', fontSize: 20 ,paddingTop:20,color:'#E26199', fontFamily: 'chulaReg' }}>{item.detail}</Text>
 
-
+{/* 
         <Text style={{ fontWeight: 'thin', fontSize: 20 ,paddingVertical:20,color:'gray' }}>{item.location.latitude}</Text>
-        <Text style={{ fontWeight: 'thin', fontSize: 20 ,paddingBottom:20,color:'gray' }}>{item.location.longitude}</Text>
+        <Text style={{ fontWeight: 'thin', fontSize: 20 ,paddingBottom:20,color:'gray' }}>{item.location.longitude}</Text> */}
 
-        <Text style={{ fontWeight: 'bold', fontSize: 20 ,paddingBottom:20,color:'gray' }}>{item.status}</Text>
+        {/* <Text style={{ fontWeight: 'bold', fontSize: 20 ,paddingBottom:20,color:'gray' }}>l{item.status}</Text> */}
 
 
         <View style={{height: screenHeight *0.25, borderRadius:9, alignItems:'center',justifyContent:'center',marginBottom:30}}>
@@ -65,7 +65,7 @@ export default function Detail({ route }) {
   style={{height: 100, backgroundColor:'#E26199', borderRadius:9, alignItems:'center',justifyContent:'center'}}
   onPress={handlePress}
 >
-  <Text style={{fontSize:30, fontWeight:'bold', color:'white'}}>เริ่มดำเนินการ</Text>
+  <Text style={{fontSize:30, fontWeight:'bold', color:'white', fontFamily: 'chulaBold'}}>เริ่มดำเนินการ</Text>
 </TouchableOpacity>
         </View>
   
