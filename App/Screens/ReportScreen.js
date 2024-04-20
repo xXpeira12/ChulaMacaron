@@ -1,14 +1,17 @@
-import { View, Text } from 'react-native'
+import { View, Text, Dimensions } from 'react-native'
 import React, { useLayoutEffect } from 'react'
+import Report from '../Components/Report/report'
 
-export default function Report({ navigation }) {
+const { height } = Dimensions.get('window')
+
+export default function ReportScreen({ navigation }) {
   useLayoutEffect(() => {
     navigation.setOptions({ headerShown: false });
   }, [navigation]);
 
   return (
-    <View>
-      <Text>Report</Text>
+    <View style={{backgroundColor:'#D5D5D5', height: height*0.5, justifyContent: 'center', alignItems: 'center'}}>
+    <Report/>
     </View>
   )
 }

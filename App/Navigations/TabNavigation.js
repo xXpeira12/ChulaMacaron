@@ -7,6 +7,7 @@ import { Octicons } from '@expo/vector-icons';
 import Dashboard from '../Screens/Dashboard';
 import { MaterialIcons } from '@expo/vector-icons';
 import ReportScreen from '../Screens/ReportScreen';
+import ProblemScreen from '../Screens/ProblemScreen';
 
 export default function TabNavigation() {
     const Tab = createBottomTabNavigator();
@@ -23,18 +24,27 @@ export default function TabNavigation() {
             tabBarLabel: ({ focused }) => (
               <Text style={{ color: focused ? '#E26199' : 'gray' }}>Home</Text>
             ),
-            tabBarIcon: ({ color, size }) => (
-              <Ionicons name="home" color='#E26199' size={size}/>
+            tabBarIcon: ({ color, size, focused }) => (
+              <Ionicons name="home" size={size} color={focused ? '#E26199' : 'gray'}/>
             ),
           }}
          />
+         <Tab.Screen name="Problem" component={ProblemScreen} 
+        options={{
+          tabBarLabel: ({ focused }) => (
+            <Text style={{ color: focused ? '#E26199' : 'gray' }}>Problem</Text>
+          ),
+          tabBarIcon: ({ color, size, focused }) => (
+            <Ionicons name="information-circle-sharp" size={30} color={focused ? '#E26199' : 'gray'} />
+          ),
+        }}/>
         <Tab.Screen name="Report" component={ReportScreen} 
         options={{
           tabBarLabel: ({ focused }) => (
             <Text style={{ color: focused ? '#E26199' : 'gray' }}>Report</Text>
           ),
-          tabBarIcon: ({ color, size }) => (
-            <Octicons name="report" color='#E26199' size={size}/>
+          tabBarIcon: ({ color, size, focused }) => (
+            <Octicons name="report" color={focused ? '#E26199' : 'gray'} size={25}/>
           ),
         }}/>
         <Tab.Screen name="Dashboard" component={Dashboard}
@@ -42,8 +52,8 @@ export default function TabNavigation() {
           tabBarLabel: ({ focused }) => (
             <Text style={{ color: focused ? '#E26199' : 'gray' }}>Dashboard</Text>
           ),
-          tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="space-dashboard" color='#E26199' size={size}/>
+          tabBarIcon: ({ color, size, focused }) => (
+            <MaterialIcons name="space-dashboard" color={focused ? '#E26199' : 'gray'} size={size}/>
           ),
         }} />
 
