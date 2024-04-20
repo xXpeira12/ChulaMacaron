@@ -1,4 +1,4 @@
-import { View, Text, Dimensions } from 'react-native'
+import { View, Text, Dimensions, StyleSheet } from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import Report from '../Components/Report/report'
 
@@ -10,8 +10,17 @@ export default function ReportScreen({ navigation }) {
   }, [navigation]);
 
   return (
-    <View style={{backgroundColor:'#D5D5D5', height: height*0.5, justifyContent: 'center', alignItems: 'center'}}>
-    <Report/>
+    <View>
+      <Report/>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  page: {
+    flex: 1,
+    marginTop: 25,
+    marginLeft: 20,
+    marginRight: 20,
+  },
+})
