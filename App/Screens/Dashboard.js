@@ -13,11 +13,78 @@ const { height } = Dimensions.get('window')
 
 // Mock data repository
 const mockData = [
-  {picture:require('../../assets/img/peko.jpg'), prob: 'ไฟฟ้า', detail: 'ไฟดับ', faculty: 'คณะวิศวกรรมศาสตร์', status: 'รอรับเรื่อง'},
-  { picture:require('../../assets/img/peko.jpg'), prob: 'ไฟฟ้า', detail: 'ไฟกระพริบ', faculty: 'คณะสถาปัตยกรรมศาสตร์', status: 'รอรับเรื่อง' },
-  { picture:require('../../assets/img/peko.jpg'), prob: 'ถนน', detail: 'ถนนลื่น', faculty: 'คณะวิศวกรรมศาสตร์', status: 'เสร็จสิ้น' },
-  { picture:require('../../assets/img/peko.jpg'), prob: 'ต้นไม้', detail: 'กิ่งไม้บดบังทัศนวิสัย', faculty: 'คณะนิติศาสตร์', status: 'กำลังดำเนินการ' },
-  // Add more items as needed
+  {
+    "Faculty": "คณะเภสัชศาสตร์",
+    "detail": "I’m",
+    "detailProblem": "เสียงรบกวนจากอุปกรณ์ชำรุด",
+    "image": require('../../assets/img/peko.jpg'),
+    "location": {
+        "latitude": 37.78583393333568,
+        "longitude": -122.40641713142395
+    },
+    "rootProblem": "เสียงรบกวน",
+    "status": "waiting"
+  },
+  {
+    "Faculty": "คณะวิศวกรรมศาสตร์",
+    "detail": "I’m",
+    "detailProblem": "ไฟดับ",
+    "image": require('../../assets/img/peko.jpg'),
+    "location": {
+        "latitude": 37.78583393333568,
+        "longitude": -122.40641713142395
+    },
+    "rootProblem": "ไฟฟ้า",
+    "status": "waiting"
+  },
+  {
+    "Faculty": "คณะวิศวกรรมศาสตร์",
+    "detail": "I’m",
+    "detailProblem": "เสียงรบกวนจากอุปกรณ์ชำรุด",
+    "image": require('../../assets/img/peko.jpg'),
+    "location": {
+        "latitude": 37.78583393333568,
+        "longitude": -122.40641713142395
+    },
+    "rootProblem": "เสียงรบกวน",
+    "status": "done"
+  },
+  {
+    "Faculty": "คณะนิติศาสตร์",
+    "detail": "I’m",
+    "detailProblem": "ไฟกระพริบ",
+    "image": require('../../assets/img/peko.jpg'),
+    "location": {
+        "latitude": 37.78583393333568,
+        "longitude": -122.40641713142395
+    },
+    "rootProblem": "ไฟฟ้า",
+    "status": "inProgress"
+  },
+  {
+    "Faculty": "คณะสถาปัตยกรรมศาสตร์",
+    "detail": "I’m",
+    "detailProblem": "ถนนลื่น",
+    "image": require('../../assets/img/peko.jpg'),
+    "location": {
+        "latitude": 37.78583393333568,
+        "longitude": -122.40641713142395
+    },
+    "rootProblem": "ถนน",
+    "status": "done"
+  },
+  {
+    "Faculty": "คณะนิเทศศาสตร์",
+    "detail": "I’m",
+    "detailProblem": "กิ่งไม้บดบังทัศนวิสัย",
+    "image": require('../../assets/img/peko.jpg'),
+    "location": {
+        "latitude": 37.78583393333568,
+        "longitude": -122.40641713142395
+    },
+    "rootProblem": "ต้นไม้",
+    "status": "inProgress"
+  }
 ];
 
 const faculties = [
@@ -44,9 +111,9 @@ const faculties = [
 ];
 
 const currentStatus = [
-  { label: 'รอรับเรื่อง', value: 'รอรับเรื่อง' },
-  { label: 'กำลังดำเนินการ', value: 'กำลังดำเนินการ' },
-  { label: 'เสร็จสิ้น', value: 'เสร็จสิ้น' },
+  { label: 'รอรับเรื่อง', value: 'waiting' },
+  { label: 'กำลังดำเนินการ', value: 'inProgress' },
+  { label: 'เสร็จสิ้น', value: 'done' },
 ]
 
 const placeholderFaculty = {
@@ -60,10 +127,9 @@ const placeholderStatus = {
 };
 
 const statusColors = {
-  'รอรับเรื่อง': '#FF8C8C',
-  'กำลังดำเนินการ': '#FFDAAF',
-  'เสร็จสิ้น': '#A1E0A7',
-  // Add more statuses as needed...
+  'waiting': '#FF8C8C',
+  'inProgress': '#FFDAAF',
+  'done': '#A1E0A7',
 };
 
 const StatusWithColor = ({ status }) => {
@@ -81,7 +147,7 @@ export default function Dashboard({ navigation }) {
   const [selectFaculty, setSelectFaculty] = useState(null);
   const [selectCurrentStatus, setCurrentStatus] = useState(null);
   const filteredElements = mockData.filter(element => 
-    (!selectFaculty || element.faculty === selectFaculty) && 
+    (!selectFaculty || element.Faculty === selectFaculty) && 
     (!selectCurrentStatus || element.status === selectCurrentStatus)
   );
 
@@ -124,7 +190,7 @@ export default function Dashboard({ navigation }) {
           <View style={{padding:10, flexDirection:'row'}}>
 
             <View>
-              <Image source={item.picture} style={{width: 150, height: 150, borderRadius:8.6}} />
+              <Image source={item.image} style={{width: 150, height: 150, borderRadius:8.6}} />
             </View>
 
             <View style={{paddingLeft:15, flex: 1, justifyContent: 'space-between'}}>

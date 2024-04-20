@@ -1,4 +1,4 @@
-import { View, Text, Dimensions, StyleSheet } from 'react-native'
+import { View, Dimensions, StyleSheet } from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import Report from '../Components/Report/report'
 
