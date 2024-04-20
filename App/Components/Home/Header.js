@@ -4,7 +4,7 @@ import React from 'react'
 export default function Header() {
   return (
     <View>
-      <Text>header components</Text>
+      <Text style={{fontFamily:'chulaReg'}}>header components</Text>
     </View>
   )
 }

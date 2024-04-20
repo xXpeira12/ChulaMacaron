@@ -2,11 +2,21 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import TabNavigation from './App/Navigations/TabNavigation';
 import { NavigationContainer } from '@react-navigation/native';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 
-
-
+// SplashScreen.preventAutoHideAsync()
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    'chulaReg' : require('./assets/fonts/CHULALONGKORNReg.otf'),
+  });
+
+  // const onLayoutRootView = useCallback(async () => {
+  //   if (fontsLoaded){
+  //     await SplashScreen.hideAsync();
+  //   }
+  // },[fontsLoaded]);
  
   return (
     <View style={styles.container}>
@@ -24,5 +34,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+ 
   },
 });
