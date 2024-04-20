@@ -190,12 +190,12 @@ export default function report() {
 
       <View style={{marginTop:10, marginBottom:10}}>
         <Text style={{ marginHorizontal: 5, fontSize: 20, fontFamily: 'chulaReg' }}>ปักหมุดบนแผนที่:</Text>
-        <View style={{ borderWidth: 2, borderRadius: 10, borderColor: '#E26199', margin: 5, padding: 10 }}>
+        <View style={{ borderWidth: 2, borderRadius: 10, borderColor: '#E26199', margin: 5, padding: 1 }}>
           <MapView 
             style={{
-              width: Dimensions.get('screen').width*0.89,
+              width: '100%',
               height: Dimensions.get('screen').height*0.23,
-              borderRadius: 20
+              borderRadius: 10
             }}
             provider={PROVIDER_GOOGLE}
             showsUserLocation={true}

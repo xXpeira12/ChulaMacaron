@@ -10,7 +10,7 @@ export default function ReportScreen({ navigation }) {
   }, [navigation]);
 
   return (
-    <View style={{alignItems:'center', padding: 50}}>
+    <View>
       <Report/>
     </View>
   )
