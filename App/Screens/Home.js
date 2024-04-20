@@ -15,6 +15,7 @@ import Green from "../../assets/img/placeholder (2).png";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
 import Macaron from "../../assets/img/logo.png";
+import icon from "../../assets/icon.png";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const screenWidth = Dimensions.get("window").width;
@@ -132,37 +133,37 @@ export default function Home({ navigation }) {
             {/* <Text style= {{paddingTop:20, color:'#E26199', fontFamily: 'chulaBold'}}>You can report any problems around Chulalongkorn University.</Text> */}
 
             <View style={{ paddingTop: 20 }}>
-              <Text style={{ color: "#E26199", fontSize: 25 }}>แพลตฟอร์ม</Text>
+              <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <Image
+                  source={icon}
+                  style={{ width: 200, height: 200, resizeMode: 'cover' }}
+                />
+              </View>
+
+              <Text style={{ color: "#E26199", fontSize: 25, paddingTop:15 }}>แพลตฟอร์ม</Text>
+
               <Text
                 style={{ color: "#E26199", fontSize: 25, paddingBottom: 10 }}
               >
                 แจ้งและจัดการปัญหาในจุฬา
               </Text>
+
             </View>
 
-            <TouchableOpacity
-              onPress={() => {}}
-              style={{
-                backgroundColor: "#E26199",
-                padding: 20,
-                alignItems: "center",
-                borderRadius: 10,
-                shadowColor: "#000",
-                shadowOffset: {
-                  width: 0,
-                  height: 2,
-                },
-                shadowOpacity: 0.25,
-                shadowRadius: 3.84,
-                elevation: 5,
-                width: screenWidth > 769 ? "40%" : "100%",
-              }}
-            >
-              <Text style={{ color: "white", fontSize: 18 }}>
-                แจ้งปัญหาได้ที่นี่ (Click Here)
-              </Text>
-            </TouchableOpacity>
-          </View>
+    {/* <TouchableOpacity onPress={() => {}} style={{ backgroundColor: '#E26199', padding: 20, alignItems: 'center',  borderRadius: 10 ,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    width: screenWidth > 769 ? '40%' : '100%',
+  }}>
+    <Text style={{ color: 'white', fontSize: 18 }}>แจ้งปัญหากดที่ปุ่ม Report</Text>
+    </TouchableOpacity> */}
+    </View>
 
           <View
             style={{
@@ -179,7 +180,7 @@ export default function Home({ navigation }) {
                 paddingBottom: 20,
               }}
             >
-              OverView
+              Overview
             </Text>
 
             <View

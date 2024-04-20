@@ -15,6 +15,7 @@ export default function report() {
   const [selectFaculty, setSelectFaculty] = useState(null);
   const [image, setImage] = useState(null);
   const [initialRegion, setInitialRegion] = useState(null);
+  const [bgColor, setBgColor] = useState('#E26199');
 
   useEffect(() => {
     const getLocation = async () => {
@@ -132,6 +133,7 @@ export default function report() {
 
   const handleSubmit = async () => {
     // Handle the submit action here
+    setBgColor('#f5b7ce');
 
     let newReport = {
       rootProblem: selectedValue,
@@ -380,7 +382,8 @@ export default function report() {
             borderWidth: 2,
             borderColor: "#E26199",
             borderRadius: 10,
-            backgroundColor: "#E26199",
+            // backgroundColor: "#E26199",
+            backgroundColor: bgColor,
             shadowColor: "#000",
             shadowOffset: {
               width: 0,
