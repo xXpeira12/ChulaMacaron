@@ -9,6 +9,7 @@ import Home from './App/Screens/Home';
 import ReportScreen from './App/Screens/ReportScreen';
 import ProblemScreen from './App/Screens/ProblemScreen';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { useFonts } from 'expo-font';
 
 const Stack = createStackNavigator();
 
@@ -53,6 +54,10 @@ function NavigationButtons() {
 }
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    'chulaReg' : require('./assets/fonts/CHULALONGKORNReg.otf'),
+    'chulaBold' : require('./assets/fonts/CHULALONGKORNBold.otf'),
+  });
   return (
     <View style={styles.container}>
       <NavigationContainer>

@@ -122,11 +122,12 @@ export default function Home({ navigation }) {
             textAlign: "center",
             paddingTop: 20,
             color: "#E26199",
+            fontFamily: "chulaBold",
           }}
         >
           CHULA MACARON
         </Text>
-        <Text style={{ fontSize: 16, textAlign: "center", color: "#E26199" }}>
+        <Text style={{ fontSize: 16, textAlign: "center", color: "#E26199", fontFamily: 'chulaReg' }}>
           make Nisits' lives better
         </Text>
 
@@ -142,10 +143,10 @@ export default function Home({ navigation }) {
                 />
               </View>
 
-              <Text style={{ color: "#E26199", fontSize: 25, paddingTop:15 }}>แพลตฟอร์ม</Text>
+              <Text style={{ color: "#E26199", fontSize: 25, paddingTop:15, fontFamily: "chulaBold", }}>แพลตฟอร์ม</Text>
 
               <Text
-                style={{ color: "#E26199", fontSize: 25, paddingBottom: 10 }}
+                style={{ color: "#E26199", fontSize: 25, paddingBottom: 10, fontFamily: "chulaBold", }}
               >
                 แจ้งและจัดการปัญหาในจุฬา
               </Text>
@@ -180,6 +181,7 @@ export default function Home({ navigation }) {
                 fontSize: 25,
                 color: "#E26199",
                 paddingBottom: 20,
+                fontFamily: "chulaBold",
               }}
             >
               Overview
@@ -264,8 +266,8 @@ export default function Home({ navigation }) {
                   color: "white",
                   padding: 15,
                   paddingBottom: 10,
-                  fontSize: 20,
-                  fontWeight: "bold",
+                  fontSize: 25,
+                  fontFamily: "chulaBold",
                 }}
               >
                 รอรับเรื่อง
@@ -275,10 +277,10 @@ export default function Home({ navigation }) {
                   color: "white",
                   paddingLeft: 15,
                   fontSize: 20,
-                  fontWeight: "bold",
+                  fontFamily: "chulaBold",
                 }}
               >
-                {countWaitingProblem}(
+                {countWaitingProblem} (
                 {((countWaitingProblem / countAllProblem) * 100).toFixed(2)}%)
               </Text>
             </View>
@@ -304,8 +306,9 @@ export default function Home({ navigation }) {
                 style={{
                   color: "white",
                   padding: 15,
-                  fontSize: 20,
-                  fontWeight: "bold",
+                  paddingBottom: 10,
+                  fontSize: 25,
+                  fontFamily: "chulaBold",
                 }}
               >
                 ดำเนินการ
@@ -315,10 +318,10 @@ export default function Home({ navigation }) {
                   color: "white",
                   paddingLeft: 15,
                   fontSize: 20,
-                  fontWeight: "bold",
+                  fontFamily: "chulaBold",
                 }}
               >
-                {countInProgressProblem}(
+                {countInProgressProblem} (
                 {((countInProgressProblem / countAllProblem) * 100).toFixed(2)}
                 %)
               </Text>
@@ -345,8 +348,9 @@ export default function Home({ navigation }) {
                 style={{
                   color: "white",
                   padding: 15,
-                  fontSize: 20,
-                  fontWeight: "bold",
+                  paddingBottom: 10,
+                  fontSize: 25,
+                  fontFamily: "chulaBold",
                 }}
               >
                 เสร็จสิ้น
@@ -356,10 +360,10 @@ export default function Home({ navigation }) {
                   color: "white",
                   paddingLeft: 15,
                   fontSize: 20,
-                  fontWeight: "bold",
+                  fontFamily: "chulaBold",
                 }}
               >
-                {countDoneProblem}(
+                {countDoneProblem} (
                 {((countDoneProblem / countAllProblem) * 100).toFixed(2)}
                 %)
               </Text>
@@ -388,8 +392,9 @@ export default function Home({ navigation }) {
               style={{
                 color: "white",
                 padding: 15,
-                fontSize: 20,
-                fontWeight: "bold",
+                paddingBottom: 10,
+                fontSize: 25,
+                fontFamily: "chulaBold",
               }}
             >
               ทั้งหมด
@@ -399,7 +404,7 @@ export default function Home({ navigation }) {
                 color: "white",
                 paddingLeft: 15,
                 fontSize: 20,
-                fontWeight: "bold",
+                fontFamily: "chulaBold",
               }}
             >
               {countAllProblem}
