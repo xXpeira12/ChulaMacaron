@@ -1,6 +1,7 @@
 import { View, Text , Dimensions , Button,  TouchableOpacity } from 'react-native'
 import React, { useLayoutEffect } from 'react'
-import Header from '../Components/Home/header';
+
+import GoogleMapView from '../Components/Home/GoogleMapView';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -43,7 +44,6 @@ export default function Home({ navigation }) {
 
     <View style={{flexDirection: screenWidth > 769 ? 'column' : 'row' , paddingTop:20}}>
       <Text style={{fontWeight:'bold',fontSize:25 , color:'#E26199'}}>OverView</Text>
-    </View>
     </View>
     </View>
   )
