@@ -34,20 +34,41 @@ export default function Home({ navigation }) {
 
     <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
 
-    <TouchableOpacity onPress={() => {}}  style={{backgroundColor:'white', borderColor:'#E26199' , width:'47.5%', height:40, borderWidth:2, borderRadius:9 , paddingRight:'5%'}}></TouchableOpacity>
-    <TouchableOpacity  onPress={() => {}}style={{backgroundColor:'white', borderColor:'#E26199' , width:'47.5%', height:40, borderWidth:2, borderRadius:9}}></TouchableOpacity>
+    <TouchableOpacity onPress={() => {}}  style={{justifyContent:'center',alignItems:'center',backgroundColor:'white', borderColor:'#E26199' , width:'47.5%', height:40, borderWidth:2, borderRadius:9 , paddingRight:'5%'}}>
+    <Text style={{textAlign:'center',fontWeight:'bold' , color:'#E26199'}}>คณะ</Text>
+    </TouchableOpacity>
+    <TouchableOpacity  onPress={() => {}}style={{justifyContent:'center',alignItems:'center',backgroundColor:'white', borderColor:'#E26199' , width:'47.5%', height:40, borderWidth:2, borderRadius:9}}>
+    <Text style={{textAlign:'center',fontWeight:'bold' , color:'#E26199'}}>ดำเนินการ</Text>
+    </TouchableOpacity>
 
     </View>
 
-
+    <View style={{ paddingTop:10}}>
     {mockData.map((item, index) => (
-      <View key={index} style={{paddingVertical: 20}}>
+      <View style={{paddingTop:20}}>
+  <View key={index} style={{ borderColor:"#E26199" , borderWidth:2 , borderRadius:10 }}>
+  <View style={{padding:10, flexDirection:'row'}}>
+
+    <View>
+      <Image source={item.picture} style={{width: 150, height: 150, borderRadius:8.6}} />
+    </View>
+
+    <View style={{paddingLeft:15, flex: 1, justifyContent: 'space-between'}}>
+      <View>
         <Text style={{fontWeight: 'bold', fontSize: 20}}>{item.header}</Text>
-        <Text style={{fontSize: 16}}>{item.description}</Text>
+        <Text style={{fontSize: 20 , fontWeight:'bold'}}>{item.description}</Text>
         <Text style={{fontSize: 16}}>{item.location}</Text>
-        <Image source={item.picture} style={{width: 100, height: 100}} />
       </View>
-    ))}
+      <TouchableOpacity onPress={() => {}}  style={{backgroundColor:'#E26199', width:'100%', height:40,  borderRadius:9 , paddingRight:'5%', alignItems:'center', justifyContent:'center'}}>
+        <Text style={{textAlign:'center',fontWeight:'bold' , color:'white'}}>See Detail</Text>
+      </TouchableOpacity>
+    </View>
+
+  </View>
+</View>
+</View>
+))}
+    </View>
 
     </View>
     </View>
