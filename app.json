@@ -20,7 +20,9 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#ffffff",
+        "package": "com.tubeguruji.findplace",
+        "googleMapsApiKey": "AIzaSyCsmsPgK3m14Nj6HTiC2A_8B91zB7URSM4"
       }
     },
     "web": {

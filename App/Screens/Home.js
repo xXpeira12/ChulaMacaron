@@ -1,6 +1,7 @@
 import { View, Text , Dimensions } from 'react-native'
 import React, { useLayoutEffect } from 'react'
-import Header from '../Components/Home/header';
+import Header from '../Components/Home/Header';
+import GoogleMapView from '../Components/Home/GoogleMapView';
 
 
 const { height } = Dimensions.get('window')
